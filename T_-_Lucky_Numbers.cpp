@@ -19,8 +19,7 @@ typedef long long ll;
 void solve(){
     int n;
     cin >> n;
-    int sum = 2;
-    for1(n-1) sum += sum*2;
+    ll sum = pow(2,n+1) - 2;
     cout << sum << endl; 
 }
 
