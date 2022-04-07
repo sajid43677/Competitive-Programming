@@ -19,6 +19,7 @@ typedef long long ll;
 void solve(){
 }
 
+//FuzzyCarnage
 int main()
 {
     Boost;
