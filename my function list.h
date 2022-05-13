@@ -207,8 +207,8 @@ ll exp(ll x, ll n, ll mod)
 }
 
 
-//vector second element sort function
-// =====================================
+//vector second element sort function decending
+// =============================================
 bool srt(const pair<int,int> &a,
               const pair<int,int> &b)
 {
