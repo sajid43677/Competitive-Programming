@@ -16,28 +16,31 @@ typedef long long ll;
 #define pb(x) push_back(x);
 #define for1(n) for(int i = 0; i < n;i++)
 
-int arr[25];
-int n;
-int ans = INT_MAX,sum = 0;
-
-void recur(int i,int sss){
-    if(i == n){
-        ans = min(ans,abs(sum - sss*2));
-        return;
-    }
-    recur(i+1,sss);
-    recur(i+1,sss+arr[i]);
-}
-
 void solve(){
-
-    cin >> n;
-    for1(n) {
-        cin >> arr[i];
-        sum += arr[i];
+    string st,st1;
+    st1 = "";
+    set <string> pq;
+    int cnt = 0;
+    while(cin >> st){
+        int n = st.size();
+        for1(n){
+            if(isalpha(st[i])){
+                st1 += tolower(st[i]);
+            }
+            else if (st1 != "")
+            {
+                pq.insert(st1);
+                st1 = "";
+            }
+        }
+        if (st1 != "")
+            pq.insert(st1);
+        st1 = "";
     }
-    recur(0,0);
-    cout << ans << endl;
+    for(auto c: pq){
+        cout << c << endl;
+    }
+    
 }
 
 //FuzzyCarnage
@@ -45,13 +48,15 @@ int main()
 {
     Boost;
     //Read;Write;
-     /* int t;
+    /* int t;
     cin >> t;
     while(t--)  */
         solve();
     
 
 }
+
+
 
 
 
