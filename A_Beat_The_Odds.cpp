@@ -19,19 +19,15 @@ typedef long long ll;
 void solve(){
     int n;
     cin >> n;
-    int a = 0,prev = 0;
+    int a = 0;
     int cnt = 0;
-    cin >> prev;
-    for1(n-1){
+    for1(n){
         cin >> a;
-        if((a+prev)%2 != 0){
+        if(a%2 != 0){
             cnt++;
         }
-        else{
-            prev = a;
-        }
     }
-    cout << cnt << endl;
+    cout << min(cnt,n-cnt) << endl;
 }
 
 //FuzzyCarnage
