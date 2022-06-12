@@ -327,7 +327,18 @@ void binarySearch(int array[],int x,int n){
 }
 
 
-
+//sum of divisors of a given number
+===================================
+ll sod(int n){
+    ll sum = 0;
+    for(int i = 1; i <= sqrt(n); i++){
+        if(n%i == 0){
+            if(n/i == i) sum += i;
+            else sum = sum + i + n/i;
+        }
+    }
+    return sum;
+}
 
 
 
