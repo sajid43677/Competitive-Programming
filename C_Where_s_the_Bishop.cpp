@@ -16,22 +16,30 @@ typedef long long ll;
 #define pb(x) push_back(x);
 #define for1(n) for(int i = 0; i < n;i++)
 
-ll sod(ll n){
-    ll sum = 0;
-    for(int i = 1; i <= sqrt(n); i++){
-        if(n%i == 0){
-            if(n/i == i) sum += i;
-            else sum = sum + i + n/i;
-        }
-    }
-    return sum;
-}
-
 void solve(){
-    ll n;
-    cin >> n;
-    ll m = sod(n) - n;
-    cout << m << endl;
+    char a;
+    int cnt=0,prev1=0,ans[2][2],flg = 0;
+    pair <int,int> pr;
+    for1(8){
+        cnt = 0;
+        for(int j = 0; j < 8; j++){
+            cin >> a;
+            if(a == '#'){
+                //cout << i << " " << j << " ";
+                ans[cnt][0] = i;
+                ans[cnt][1] = j;
+                cnt++;
+            }
+        }
+        if(prev1 == 2 && cnt  == 1 && flg == 0) {
+            pr.first = ans[0][0]+1;
+            pr.second = ans[0][1]+1;
+            flg = 1;
+        }
+        prev1 = cnt;
+        
+    }
+    cout << pr.first << " " << pr.second << endl;
 }
 
 //FuzzyCarnage

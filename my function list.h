@@ -202,8 +202,8 @@ ll exp(ll x, ll n, ll mod)
 {
     if(n==0) return 1;
     if(n==1) return x;
-    if(n%2==0) return exp((x*x)%mod,n/2);
-    if(n%2==1) return (x*exp((x*x)%mod,n/2))%mod;
+    if(n%2==0) return exp((x*x)%mod,n/2,mod);
+    if(n%2==1) return (x*exp((x*x)%mod,n/2,mod))%mod;
 }
 
 
@@ -341,7 +341,43 @@ ll sod(int n){
 }
 
 
+//more efficient seive and nod
+==============================
+ll is_prime[mx+1],siv[mx+1],cnt;
+void sieve_prime(){
+	long long int i, j;
+    for (i=3; i<mx; i+=2)
+        if(!siv[i])
+            for (j=i*i; j<mx; j+=i+i)
+                siv[j]=1;
+    is_prime[cnt++]=2;
+    for (i=3; i<mx; i+=2)
+        if(!siv[i]) is_prime[cnt++]=i;
+    return;
+}
 
+ll nod(ll n)
+{
+   ll sum = 1,k = 0;
+   for(int i=0;i<mx && is_prime[i]*is_prime[i]<=n;i++)
+        {
+            if(n%is_prime[i]==0)
+            {
+                k=0;
+                while(n%is_prime[i]==0)
+                {
+                    n/=is_prime[i];
+                    k++;
+                    if(n==0 || n==1)
+                        break;
+                }
+                sum*=k+1;
+            }
+
+        }
+        if(n!=1) sum = sum*2;
+        return sum-1;
+}
 
 
 

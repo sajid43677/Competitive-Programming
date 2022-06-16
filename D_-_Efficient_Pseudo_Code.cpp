@@ -16,9 +16,19 @@ typedef long long ll;
 #define pb(x) push_back(x);
 #define for1(n) for(int i = 0; i < n;i++)
 
+ll mod = 1000000007;
+
+ll exp(ll x, ll n, ll mod)
+{
+    if(n==0) return 1;
+    if(n==1) return x;
+    if(n%2==0) return exp((x*x)%mod,n/2,mod);
+    else return (x*exp((x*x)%mod,n/2,mod))%mod;
+}
+
 ll sod(ll n){
     ll sum = 0;
-    for(int i = 1; i <= sqrt(n); i++){
+    for(ll i = 1; i <= sqrt(n); i++){
         if(n%i == 0){
             if(n/i == i) sum += i;
             else sum = sum + i + n/i;
@@ -26,12 +36,14 @@ ll sod(ll n){
     }
     return sum;
 }
-
+int cas = 1;
 void solve(){
-    ll n;
-    cin >> n;
-    ll m = sod(n) - n;
-    cout << m << endl;
+    ll n,m,p;
+    cin >> n >> m;
+    p = exp(n,m,mod)%mod;
+    p = sod(p)%mod;
+    cout << "Case " << cas << ": " << p << endl;
+    cas++;
 }
 
 //FuzzyCarnage
