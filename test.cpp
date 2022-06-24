@@ -27,52 +27,23 @@ int checkPalindrome(string str)
 }
 
 void solve(){
-    int n;
-    cin >> n;
     string s;
     cin >> s;
-    ll cnt = 0,cn = n-1;
-    while(true){
-        cout << s << endl;
-        cnt++;
-        if(s[n-1] != '9'){
-            s[n-1]++;
-        }
-        else{
-            cout << s << endl;
-            s[n-1] = '0';
-            cn = n -1;
-            while(true){
-                    cout << s  << " " << cn<< endl;
-                cn--;
-                if(cn < 0){
-                    s = '1'+ s;
-                    n++;
-                    break;
-                }
-                if(s[cn] != '9'){
-                    s[cn]++;
-                    break;
-                }
-                s[cn] = '0';
-            }
-        }
-        if(checkPalindrome(s)) break;
-    }
+    s = '1' + s;
     cout << s << endl;
-    cout << cnt << endl;
+    
 }
 
 //FuzzyCarnage
 int main()
 {
-    //Boost;
+    Boost;
     //Read;Write;
-    int t;
+    /* int t;
     cin >> t;
-    while(t--)
+    while(t--)  */
         solve();
-
+    
 
 }
 
