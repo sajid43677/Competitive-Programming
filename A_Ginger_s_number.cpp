@@ -17,7 +17,16 @@ typedef long long ll;
 #define for1(n) for(int i = 0; i < n;i++)
 #define lohi int, vector<int>, greater<int>>
 
+int gcd(int i , int j){
+    if(i == 0)
+        return j;
+    return gcd(j%i,i);
+}
+
 void solve(){
+    int a,b;
+    cin >> a >> b;
+    cout << gcd(a,b) << endl;
 }
 
 //FuzzyCarnage

@@ -15,9 +15,29 @@ typedef long long ll;
 #define Write freopen("output.txt","w",stdout);
 #define pb(x) push_back(x);
 #define for1(n) for(int i = 0; i < n;i++)
-#define lohi int, vector<int>, greater<int>>
 
 void solve(){
+    set <char> st;
+    string s;
+    cin >> s;
+    int n = s.size(),cnt = 0;
+    for1(n){
+        st.insert(s[i]);
+        if(st.size() == 3){
+            while(true){
+                i++;
+                st.insert(s[i]);
+                if(st.size() > 3){
+                    i--;
+                    break;
+                }
+            }
+            cnt++;
+            st.clear();
+        }
+    }
+    if(st.size() > 0) cnt++;
+    cout << cnt << endl;
 }
 
 //FuzzyCarnage

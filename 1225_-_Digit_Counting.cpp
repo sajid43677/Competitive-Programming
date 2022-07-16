@@ -17,7 +17,26 @@ typedef long long ll;
 #define for1(n) for(int i = 0; i < n;i++)
 #define lohi int, vector<int>, greater<int>>
 
+
+
 void solve(){
+    int arr[10] = {0};
+    int n;
+    cin >> n;
+    for(int i = 1; i <=n;i++){
+        int tmp,d;
+        tmp = i;
+        while(true){
+            d = tmp%10;
+            tmp = tmp/10;
+            //cout << d << endl;
+            arr[d]++;
+            //cout << d<<" "<<arr[d] << endl;
+            if(tmp == 0) break;
+        }
+    }
+    for1(10) cout << arr[i] <<" ";
+    cout << endl;
 }
 
 //FuzzyCarnage

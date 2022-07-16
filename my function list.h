@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+using namespace std;
 //sum of digits
 //===============
 int sumOfDigit(long long num){
@@ -379,7 +380,51 @@ ll nod(ll n)
         return sum-1;
 }
 
+// bfs
+=========
+vector <int> vc[100];
+int visited[100];
+int p[100];
+int dist[100];
 
+void bfs(int s,int t){
+    for1(100) visited[i] = p[i] = dist[i] = 0;
+    dist[s] = 0;
+    queue <int> q;
+    q.push(s);
+    visited[s] = 1;
+    p[s] = s;
+   
+    while(!q.empty()){
+        int mother = q.front();
+        //cout <<endl << mother << endl;
+        q.pop();
+        for(int i = 0; i < vc[mother].size(); i++){
+            if(visited[vc[mother][i]] == 0){
+                int child = vc[mother][i];
+                dist[child] = dist[mother]++;
+                p[child] = mother;
+                visited[child] = 1;
+                q.push(child);
+                //cout << child << " ";
+            }
+        }
+    }
+    if(visited[t] == 0){
+        cout << "No path found" << endl;
+    }
+    vector <int> ans;
+    ans.pb(t);
+    int curr = t;
+    while(curr !=s){
+        ans.pb(p[curr]);
+        curr = p[curr];
+    }
+    reverse(ans.begin(),ans.end());
+    for(auto c : ans){
+        cout << c << " ";
+    }
+}
 
 
 

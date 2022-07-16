@@ -18,6 +18,19 @@ typedef long long ll;
 #define lohi int, vector<int>, greater<int>>
 
 void solve(){
+    int n;
+    cin >> n;
+    map <int,int> st;
+    int a,b;
+    for1(n){
+        cin >> a >> b;
+        st[a]++;
+    }
+    int ans = (n*(n-1))/2;
+    for(auto i:st){
+        ans -= (i.second*(i.second-1))/2;
+    }
+    cout << ans << endl;
 }
 
 //FuzzyCarnage
@@ -25,9 +38,9 @@ int main()
 {
     Boost;
     //Read;Write;
-    int t;
+   /*  int t;
     cin >> t;
-    while(t--) 
+    while(t--)  */
         solve();
     
 
