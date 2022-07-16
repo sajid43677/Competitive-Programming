@@ -16,30 +16,25 @@ typedef long long ll;
 #define pb(x) push_back(x);
 #define for1(n) for(int i = 0; i < n;i++)
 #define lohi int, vector<int>, greater<int>>
-
-
-
+int cas = 1;
 void solve(){
-    int arr[10] = {0};
-    int n;
-    cin >> n;
-    for(int i = 1; i <=n;i++){
-        int tmp,d;
-        tmp = i;
-        while(true){
-            d = tmp%10;
-            tmp = tmp/10;
-            //cout << d << endl;
-            arr[d]++;
-            //cout << d<<" "<<arr[d] << endl;
-            if(tmp == 0) break;
-        }
+    cout << "Case " << cas <<": ";
+    int arr[10];
+    int sum = 0;
+    for1(10){
+        cin >> arr[i];
+        sum += arr[i];
     }
-    for1(10) {
-        cout << arr[i];
-        if(i!=9) cout << " ";
-        }
-    cout << endl;
+    sum = sum/4;
+    sort(arr,arr+10);
+    int a,b,c,d,e;
+    c = sum - arr[0] - arr[9];
+    a = arr[1] - c;
+    b = arr[0] - a;
+    e = arr[8] - c;
+    d = arr[9] - e;
+    cout << a<<" " << b<<" " << c<<" " << d<<" " << e << endl;
+    cas++;
 }
 
 //FuzzyCarnage
