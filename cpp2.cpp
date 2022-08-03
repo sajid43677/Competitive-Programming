@@ -6,6 +6,8 @@ typedef long long ll;
 
 //double pi = acos(-1.0);
 
+#define xx first
+#define yy second
 #define allZero(a) memset(a,0,sizeof(a));
 #define allnegOne(a) memset(a,-1,sizeof(a));
 #define endl "\n"
