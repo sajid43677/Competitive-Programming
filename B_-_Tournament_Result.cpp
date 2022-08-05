@@ -20,6 +20,44 @@ typedef long long ll;
 #define lohi int, vector<int>, greater<int>>
 
 void solve(){
+    int n;
+    cin >> n;
+    char arr[n][n];
+    for1(n){
+        for(int j = 0; j < n; j++){
+            cin >> arr[i][j];
+        }
+    }
+    for1(n){
+        for(int j = 0; j < n; j++){
+            if(arr[i][j] == '-') continue;
+            if(arr[i][j] == 'W'){
+                if(arr[j][i] == 'L'){
+                    arr[j][i] = '-';
+                    continue;
+                }
+                cout << "incorrect" << endl;
+                return;
+            }
+            if(arr[i][j] == 'L'){
+                if(arr[j][i] == 'W'){
+                    arr[j][i] = '-';
+                    continue;
+                }
+                cout << "incorrect" << endl;
+                return;
+            }
+            if(arr[i][j] == 'D'){
+                if(arr[j][i] == 'D'){
+                    arr[j][i] = '-';
+                    continue;
+                }
+                cout << "incorrect" << endl;
+                return;
+            }
+        }
+    }
+    cout << "correct" << endl;
 }
 
 //FuzzyCarnage
@@ -27,9 +65,9 @@ int main()
 {
     Boost;
     //Read;Write;
-    int t;
+    /* int t;
     cin >> t;
-    while(t--) 
+    while(t--)  */
         solve();
     
 
