@@ -18,7 +18,6 @@ typedef long long ll;
 #define pb(x) push_back(x);
 #define for1(n) for(int i = 0; i < n;i++)
 #define lohi int, vector<int>, greater<int>>
-#define mkp make_pair
 
 template <typename Arg1>
 void __f (const char* name, Arg1&& arg1) { cout << name << ": " << arg1 << endl; }
@@ -30,6 +29,19 @@ void __f (const char* names, Arg1&& arg1, Args&&... args)
 }
 
 void solve(){
+    int n,x,y,x1,y1,a,b;
+    cin >> n;
+    x = y =x1=y1 =0;
+    int ans = 0;
+    for1(n){
+        cin >> a >> b;
+        x = max(x,a);
+        x1 = min(x1,a);
+        y = max(y,b);
+        y1 = min(y1,b);
+    }
+    ans = 2*(x+y+abs(x1)+abs(y1));
+    cout << ans << endl;
 }
 
 //FuzzyCarnage
@@ -44,6 +56,7 @@ int main()
     
 
 }
+
 
 
 

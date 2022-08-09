@@ -4,7 +4,7 @@ using namespace std;
 
 typedef long long ll;
 
-//double pi = acos(-1.0);
+double pi = acos(-1.0);
 
 #define xx first
 #define yy second
@@ -18,7 +18,6 @@ typedef long long ll;
 #define pb(x) push_back(x);
 #define for1(n) for(int i = 0; i < n;i++)
 #define lohi int, vector<int>, greater<int>>
-#define mkp make_pair
 
 template <typename Arg1>
 void __f (const char* name, Arg1&& arg1) { cout << name << ": " << arg1 << endl; }
@@ -30,16 +29,25 @@ void __f (const char* names, Arg1&& arg1, Args&&... args)
 }
 
 void solve(){
+    double a,b,d;
+	cin>>a>>b>>d;
+	double r = hypot(a,b);
+	double theta = atan2(b,a);
+	theta += d * acos(-1.0) / 180.0;
+	double x = cos(theta) * r;
+	double y = sin(theta) * r;
+	cout<<fixed<<setprecision(15)<<x<<' '<<y<<endl;
+
 }
 
 //FuzzyCarnage
 int main()
 {
-    Boost;
+    //Boost;
     //Read;Write;
-    int t;
+    /* int t;
     cin >> t;
-    while(t--) 
+    while(t--) */ 
         solve();
     
 
