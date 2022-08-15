@@ -38,17 +38,62 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 //          Code Starts Here          //
 //====================================//
 
+vector <int> vc[1000000];
+int visited[1000000];
+int p[1000000];
+int dist[1000000];
+
+void bfs(int s,int t){
+    for1(1000000) visited[i] = p[i] = dist[i] = 0;
+    dist[s] = 0;
+    queue <int> q;
+    q.push(s);
+    visited[s] = 1;
+    p[s] = s;
+   
+    while(!q.empty()){
+        int mother = q.front();
+        //cout <<endl << mother << endl;
+        q.pop();
+        for(int i = 0; i < vc[mother].size(); i++){
+            if(visited[vc[mother][i]] == 0){
+                int child = vc[mother][i];
+                dist[child] = dist[mother]+1;
+                p[child] = mother;
+                visited[child] = 1;
+                q.push(child);
+                //cout << child << " ";
+            }
+        }
+    }
+    /* if(visited[t] == 0){
+        cout << "No path found" << endl;
+    } */
+    //vector <int> ans;
+    //ans.pb(t);
+    /* int curr = t;
+    int cnt=0;
+    while(curr !=s){
+        //ans.pb(p[curr]);
+        curr = p[curr];
+        cnt++;
+    } */
+    /* reverse(ans.begin(),ans.end());
+    for(auto c : ans){
+        cout << c << " ";
+    } */
+    cout << dist[t] - 1 << endl;
+}
+
 void solve(){
-  int n,a,b;
-  cin >> n;
-  int cnt = 1;
-  b = 0;
-  for1(n){
-    cin >> a;
-    if(a < b) cnt++;
-    b = a;
-  }
-  cout << cnt << endl;
+    int n,m,a,b;
+    cin >>n>> m;
+    for1(m){
+        cin >> a >> b;
+        vc[a].pb(b);
+        vc[b].pb(a);
+    }
+    bfs(1,n);
 }
 
 //FuzzyCarnage

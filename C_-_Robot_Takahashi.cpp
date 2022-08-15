@@ -39,22 +39,60 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 //====================================//
 
 void solve(){
-  int n,a,b;
-  cin >> n;
-  int cnt = 1;
-  b = 0;
-  for1(n){
-    cin >> a;
-    if(a < b) cnt++;
-    b = a;
-  }
-  cout << cnt << endl;
+    int n,a,b;
+    cin >> n;
+    string s;
+    cin >> s;
+    vector <pair<int,int>> vc(n);
+    for1(n){
+        cin >> a;
+        b = s[i] - '0';
+        vc[i] = mkp(a,b);
+    }
+    sort(vc.begin(),vc.end(),greater<pair<int,int>>());
+    /* for1(n){
+        cout << vc[i].first << " " << vc[i].second << endl;
+    } */
+    int ones[n] = {0};
+    int zeroes[n] = {0};
+    if(vc[0].second == 1) ones[0] = 1;
+    for(int i = 1; i < n; i++){
+        if(vc[i].second == 1) ones[i] = ones[i-1] + 1;
+        else ones[i] = ones[i-1];
+    }
+    if(vc[n-1].second == 0) zeroes[n-1] = 1;
+    for(int i = n-2; i >=0;i--){
+        if(vc[i].second == 0) zeroes[i] = zeroes[i+1] + 1;
+        else zeroes[i] = zeroes[i+1];
+    }
+    int ans = INT32_MAX;
+    if(zeroes[0] == n){
+        cout << n << endl;
+        return;
+    }
+    if(ones[n-1] == n){
+        cout << n << endl;
+        return;
+    }
+    for1(n){
+        a = abs(ones[i]-zeroes[i]);
+        if(ans > a){
+            b = i;
+            ans = a;
+        }
+    }
+   /*  __f("w",vc[b].first);
+    __f("o",b+1 - ones[b]);
+    __f("z",ones[n-1] - ones[b]); */
+    cout <<n - ((b+1 - ones[b]) + (ones[n-1] - ones[b])) << endl;
+
+
 }
 
 //FuzzyCarnage
 int main()
 {
-    Boost;
+    //Boost;
     //Read;Write;
     /* int t;
     cin >> t;

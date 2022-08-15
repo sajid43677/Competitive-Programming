@@ -38,17 +38,34 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 //          Code Starts Here          //
 //====================================//
 
+int arr[100005];
 void solve(){
-  int n,a,b;
-  cin >> n;
-  int cnt = 1;
-  b = 0;
-  for1(n){
-    cin >> a;
-    if(a < b) cnt++;
-    b = a;
-  }
-  cout << cnt << endl;
+    int n;
+    cin >> n;
+    int sum = 0,sumr = 0;
+    for1(n+1){
+        cin >> arr[i+1];
+        sum +=arr[i+1];
+    }
+    sum = sum /2;
+    sort(arr+1,arr+n+1);
+    for1(n+1){
+        sumr += arr[i+1];
+        if(sumr >= sum){
+            if(sumr > sum){
+                cout << arr[i+1] << endl;  
+            }
+            else{
+                if(arr[i+1]==arr[i+2]){
+                    cout << arr[i+1] << endl; 
+                }
+                else{
+                    cout << arr[i+1]+ 1 << endl;
+                }
+            }
+            return;
+        }
+    }
 }
 
 //FuzzyCarnage
@@ -57,8 +74,8 @@ int main()
     Boost;
     //Read;Write;
     /* int t;
-    cin >> t;
-    while(t--)  */
+    cin >> t; */
+    //while(t--) 
         solve();
     
 

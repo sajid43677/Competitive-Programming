@@ -39,32 +39,68 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 //====================================//
 
 void solve(){
-    int n,m,k;
-    cin >> n >> m >> k;
-    if(n < k){
-        cout << "Impossible" << endl;
-        return;
-    }
-    char arr[n][m];
+    int n;
+    cin >> n;
+    char arr[n][n];
     for1(n){
-        for(int j = 0; j < m;j++){
-            if(i == j && k) {arr[i][j] = '*';
-            k--;
-            }
-            else arr[i][j] = '.';
+        for(int j = 0; j < n;j++){
+            cin >> arr[i][j];
         }
     }
-    if(k > 0){
-            cout << "Impossible" << endl;
+    int cntb = 0,cntw = 0;
+    int smc[n] = {0};
+    for1(n){
+        cntb = cntw = 0;
+        for(int j = 0; j < n; j++){
+            if(arr[i][j] == 'B') cntb++;
+            else cntw++;
+            if(i != 0 && arr[i-1][j] == arr[i][j]) smc[j]++;
+        }
+        if(cntw != cntb){
+             cout << 0 << endl;
             return;
-    }
-    cout << "Possible" << endl;
-    for1(n){
-        for(int j = 0; j < m;j++){
-            cout << arr[i][j];
         }
-        cout << endl;
+         /* for(int j = 0 ; j < n; j++){
+            if(smc[j] >= 2){
+                cout << 0 << endl;
+                return;
+            }
+        }  */
     }
+    int smr[n] = {0};
+    for1(n){
+        cntb = cntw = 0;
+        for(int j = 0; j < n; j++){
+            if(arr[j][i] == 'B') cntb++;
+            else cntw++;
+            if(i != 0 && arr[j][i-1] == arr[j][i]) smr[j]++;
+        }
+        if(cntw != cntb){
+             cout << 0 << endl;
+            return;
+        }
+        //  for(int j = 0 ; j < n; j++){
+        //     if(smr[j] >= 2){
+        //         cout << 0 << endl;
+        //         return;
+        //     }
+        // } 
+    }
+    int cnt = 0,cnta = 0;
+    for1(n){
+        for(int j = 0 ; j < n;j++){
+            if(cnt >= 2 || cnta >= 2) {
+                cout << 0 << endl;
+                return;
+            }
+            if(j !=0 && arr[i][j] == arr[i][j-1]) cnt++;
+            else cnt = 0;
+            if(j != 0 && arr[j-1][i] == arr[j][i]) cnta++;
+            else cnta = 0;
+        }
+    }
+    cout << 1 << endl;
+
 }
 
 //FuzzyCarnage

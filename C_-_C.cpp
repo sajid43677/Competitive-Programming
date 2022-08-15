@@ -39,56 +39,29 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 //====================================//
 
 void solve(){
+    int arr[101] = {0};
+    for1(100){
+        arr[i+1] = arr[i]+i+1;
+    }
     int n;
     cin >> n;
-    int ase= 0,bag = 0;
-    vector<int> vc;
-    char vow[5] = {'a','e','i','o','u'};
-    string s;
-    int flg = 0;
-    for1(n){
-        cin >>s;
-        for(int j = 0;j<s.size();j++){
-            flg = 0;
-            for(int k = 0; k < 5;k++){
-                if(vow[k] == s[j]){
-                    flg = 1;
-                    ase++;
-                    break;
-                }
-            }
-            if(flg == 0){
-                if(ase)bag++;
-                ase = 0;
-            }
-        }
-        if(ase)
-            bag++;
-        //cout << ase <<" " << bag << endl;
-        vc.pb(bag);
-        ase = bag = 0;
+    if(n == 1){
+        cout << "Either" << endl;
+        return;
     }
-    /* for(auto v:vc){
-        cout << v << endl;
-    } */
-    int arr[3] = {5,12,17};
-    int cnt = 0;
-    for(int i = 0; i < n; i++){
-        ase = 0;
-        bag = 0;
-        for(int j = i; j < n;j++){
-            if(ase>16)break;
-            ase = ase+vc[j];
-            for(int k = 0; k < 3;k++){
-                if(arr[k] == ase){
-                    bag++;
-                    break;
-                }
-            }
-        }
-        if(bag == 3)cnt++;
+    if(n == 2){
+        cout << "Odd" << endl;
+        return;
     }
-    cout << cnt << endl;
+    if(n%2==1){
+        cout << "Either" << endl;
+        return;
+    }
+    int a = n/2;
+    if(a%2 == 0){
+        cout << "Even" << endl;
+    }
+    else cout << "Odd" << endl;
 
 }
 
@@ -99,7 +72,7 @@ int main()
     //Read;Write;
     /* int t;
     cin >> t;
-    while(t--) */ 
+    while(t--)  */
         solve();
     
 

@@ -39,6 +39,21 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 //====================================//
 
 void solve(){
+    int n,q,a,b,p;
+    cin >> n >> q;
+    string s,tmp;
+    cin >> s;
+    p = 0;
+    for1(q){
+        cin >> a >> b;
+        if(a == 1){
+            p += b;
+            p = p%n;
+        }
+        else{
+            cout << s[(n-p+b-1)%n] << endl;
+        }
+    }
 
 }
 
@@ -47,9 +62,9 @@ int main()
 {
     Boost;
     //Read;Write;
-    int t;
+    /* int t;
     cin >> t;
-    while(t--) 
+    while(t--)  */
         solve();
     
 

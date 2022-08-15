@@ -39,16 +39,32 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 //====================================//
 
 void solve(){
-  int n,a,b;
-  cin >> n;
-  int cnt = 1;
-  b = 0;
-  for1(n){
-    cin >> a;
-    if(a < b) cnt++;
-    b = a;
-  }
-  cout << cnt << endl;
+    int n,k,q,a;
+    cin >> n >> k >> q;
+    int arr[n+1] = {0};
+    int pos[k+1] = {0};
+    for1(k){
+        cin >> a;
+        arr[a] = -1;
+        pos[i+1] = a;
+    }
+    for1(q){
+        cin >> a;
+        if(pos[a] != n){
+            if(arr[pos[a]+1] == -1){
+                continue;
+            }
+            arr[pos[a]] = 0;
+            pos[a]++;
+            //__f("pos[a]",pos[a]);
+            arr[pos[a]] = -1;  
+        }
+    }
+    for1(k+1){
+        if(i == 0) continue;
+        cout << pos[i] << " ";
+    }
+
 }
 
 //FuzzyCarnage
