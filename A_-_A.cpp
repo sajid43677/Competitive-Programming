@@ -39,57 +39,32 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 //====================================//
 
 void solve(){
-    int n;
-    cin >> n;
-    int ase= 0,bag = 0;
-    vector<int> vc;
-    char vow[5] = {'a','e','i','o','u'};
-    string s;
-    int flg = 0;
+    int n,m,k;
+    cin >> n >> m >> k;
+    if(n < k){
+        cout << "Impossible" << endl;
+        return;
+    }
+    char arr[n][m];
     for1(n){
-        cin >>s;
-        for(int j = 0;j<s.size();j++){
-            flg = 0;
-            for(int k = 0; k < 5;k++){
-                if(vow[k] == s[j]){
-                    flg = 1;
-                    ase++;
-                    break;
-                }
+        for(int j = 0; j < m;j++){
+            if(i == j && k) {arr[i][j] = '*';
+            k--;
             }
-            if(flg == 0){
-                if(ase)bag++;
-                ase = 0;
-            }
+            else arr[i][j] = '.';
         }
-        if(ase)
-            bag++;
-        //cout << ase <<" " << bag << endl;
-        vc.pb(bag);
-        ase = bag = 0;
     }
-    /* for(auto v:vc){
-        cout << v << endl;
-    } */
-    int arr[3] = {5,12,17};
-    int cnt = 0;
-    for(int i = 0; i < n; i++){
-        ase = 0;
-        bag = 0;
-        for(int j = i; j < n;j++){
-            if(ase>16)break;
-            ase = ase+vc[j];
-            for(int k = 0; k < 3;k++){
-                if(arr[k] == ase){
-                    bag++;
-                    break;
-                }
-            }
+    if(k > 0){
+            cout << "Impossible" << endl;
+            return;
+    }
+    cout << "Possible" << endl;
+    for1(n){
+        for(int j = 0; j < m;j++){
+            cout << arr[i][j];
         }
-        if(bag == 3)cnt++;
+        cout << endl;
     }
-    cout << cnt << endl;
-
 }
 
 //FuzzyCarnage
@@ -99,7 +74,7 @@ int main()
     //Read;Write;
     /* int t;
     cin >> t;
-    while(t--) */ 
+    while(t--)  */
         solve();
     
 

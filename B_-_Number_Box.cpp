@@ -29,67 +29,54 @@ void __f (const char* names, Arg1&& arg1, Args&&... args)
     const char* comma = strchr (names + 1, ',');
     cout.write (names, comma - names) << ": " << arg1 << " |"; __f (comma + 1, args...);
 }
-
 //              D, U, R, L, DR, DL, UR, UL        D = Down, R = Right, L = Left, U = Up
 vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
             gy={0, 0, 1, -1, 1, -1, 1, -1};
 
-
-//          Code Starts Here          //
-//====================================//
-
 void solve(){
-    int n;
+    int n,c,x,y;
+    ll now,mx = -1;
+    char a;
     cin >> n;
-    int ase= 0,bag = 0;
-    vector<int> vc;
-    char vow[5] = {'a','e','i','o','u'};
-    string s;
-    int flg = 0;
+    vector <vector<int>> vc(n,vector<int>(n));
     for1(n){
-        cin >>s;
-        for(int j = 0;j<s.size();j++){
-            flg = 0;
-            for(int k = 0; k < 5;k++){
-                if(vow[k] == s[j]){
-                    flg = 1;
-                    ase++;
-                    break;
-                }
-            }
-            if(flg == 0){
-                if(ase)bag++;
-                ase = 0;
-            }
+        for(int j = 0; j < n; j++){
+            cin >> a;
+            c = a - '0';
+                vc[i][j] = c;
         }
-        if(ase)
-            bag++;
-        //cout << ase <<" " << bag << endl;
-        vc.pb(bag);
-        ase = bag = 0;
     }
-    /* for(auto v:vc){
-        cout << v << endl;
+    /* for(auto v: vc){
+        for(auto c: v){
+            cout << c;
+        }
+        pendl;
     } */
-    int arr[3] = {5,12,17};
-    int cnt = 0;
-    for(int i = 0; i < n; i++){
-        ase = 0;
-        bag = 0;
-        for(int j = i; j < n;j++){
-            if(ase>16)break;
-            ase = ase+vc[j];
-            for(int k = 0; k < 3;k++){
-                if(arr[k] == ase){
-                    bag++;
-                    break;
+    for1(n){
+        for(int j = 0;j <n;j++){
+            for(int k = 0; k < 8;k++){
+                now = 0;
+                x = i;
+                y = j;
+                for(int l = 0;l < n;l++){
+                    now *= 10;
+                    now += vc[x][y];
+                    x += gx[k];
+                    y += gy[k];
+                    x %= n;
+                    y %= n;
+                    x += n;
+                    y += n;
+                    x%=n;
+                    y%=n;
+                    //cout << "now: " << now << " "<< x << " " << y << endl;
                 }
+                mx = max(mx,now);
+                
             }
         }
-        if(bag == 3)cnt++;
     }
-    cout << cnt << endl;
-
+    cout << mx << endl;
 }
 
 //FuzzyCarnage
@@ -99,7 +86,7 @@ int main()
     //Read;Write;
     /* int t;
     cin >> t;
-    while(t--) */ 
+    while(t--)  */
         solve();
     
 
