@@ -39,29 +39,22 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 //====================================//
 
 void solve(){
-    int arr[101] = {0};
-    for1(100){
-        arr[i+1] = arr[i]+i+1;
-    }
-    int n;
+    int n,a;
     cin >> n;
-    if(n == 1){
-        cout << "Either" << endl;
-        return;
+    vector <int> vc;
+    for1(n){
+        cin >> a;
+        vc.pb(a);
     }
-    if(n == 2){
-        cout << "Odd" << endl;
-        return;
+    sort(vc.begin(),vc.end(), greater<int>());
+    int cnt = 0;
+    for(int i = 0; i < n/2;i++){
+        cnt += vc[i];
     }
-    if(n%2==1){
-        cout << "Either" << endl;
-        return;
+    for(int i = n/2; i < n;i++){
+        cnt += ceil(vc[i]/2);
     }
-    int a = n/2;
-    if(a%2 == 0){
-        cout << "Even" << endl;
-    }
-    else cout << "Odd" << endl;
+    cout << cnt;
 
 }
 

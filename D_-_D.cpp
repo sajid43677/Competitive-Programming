@@ -39,7 +39,40 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 //====================================//
 
 void solve(){
-
+    int n;
+    cin >> n;
+    int arr[n+5] = {0};
+    int arr1[n+5] = {0};
+    int cum[n+5] = {0};
+    int cum1[n+5] = {0};
+    int ref[n+5] = {0};
+    for1(n){
+        cin >> arr[i];
+    }
+    for1(n){
+        cin >> arr1[i];
+    }
+    cum[0] = arr[0];
+    cum1[0] = arr1[0];
+    for(int i = 1; i < n;i++){
+        cum[i] = cum[i-1] + arr[i];
+        if(arr[i] == arr[i-1]){
+            ref[i] = -1;
+        }
+    }
+    for(int i = 1; i < n;i++){
+        cum1[i] = cum1[i-1] + arr1[i];
+    }
+    cout << arr1[0];
+    for(int i = 1; i < n; i++){
+        //__f("cum,cum1",cum[i],cum1[i]);
+        if(cum[i] == cum1[i] && ref[i] == 0 && i != n-1){
+            cout <<" "<< arr1[i] << " #";
+        }
+        else{
+            cout<<" " << arr1[i];
+        }
+    }
 }
 
 //FuzzyCarnage

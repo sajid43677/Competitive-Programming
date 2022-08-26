@@ -427,7 +427,122 @@ void bfs(int s,int t){
 }
 
 
+//dijkstra algo (if node number is n then pass graph(n+1))
+===========================================================
+# define INF INT64_MAX
 
+// iPair ==> long long Pair
+typedef pair<ll, ll> iPair;
+
+// This class represents a directed graph using
+// adjacency list representation
+class Graph
+{
+	int V; // No. of vertices
+
+	// In a weighted graph, we need to store vertex
+	// and weight pair for every edge
+	list< pair<ll, ll> > *adj;
+
+public:
+	Graph(ll V); // Constructor
+
+	// function to add an edge to graph
+	void addEdge(int u, int v, int w);
+
+	// prints shortest path from s
+	void shortestPath(int s);
+};
+
+// Allocates memory for adjacency list
+Graph::Graph(ll V)
+{
+	this->V = V;
+	adj = new list<iPair> [V];
+}
+
+void Graph::addEdge(int u, int v, int w)
+{
+	adj[u].push_back(make_pair(v, w));
+	adj[v].push_back(make_pair(u, w));
+}
+
+// Prints shortest paths from src to all other vertices
+void Graph::shortestPath(int src)
+{
+	// Create a priority queue to store vertices that
+	// are being preprocessed. This is weird syntax in C++.
+	// Refer below link for details of this syntax
+	// https://www.geeksforgeeks.org/implement-min-heap-using-stl/
+	priority_queue< iPair, vector <iPair> , greater<iPair> > pq;
+
+	// Create a vector for distances and initialize all
+	// distances as infinite (INF)
+	vector<ll> dist(V, INF);
+	vector<ll> loc(V, -1);
+	// Insert source itself in priority queue and initialize
+	// its distance as 0.
+	pq.push(make_pair(0, src));
+	dist[src] = 0;
+	loc[src] = 0;
+	vector<bool> f(V, false);
+
+	/* Looping till priority queue becomes empty (or all
+	distances are not finalized) */
+	while (!pq.empty())
+	{
+		// The first vertex in pair is the minimum distance
+		// vertex, extract it from priority queue.
+		// vertex label is stored in second of pair (it
+		// has to be done this way to keep the vertices
+		// sorted distance (distance must be first item
+		// in pair)
+		ll u = pq.top().second;
+		pq.pop();
+		f[u] = true;
+
+		// 'i' is used to get all adjacent vertices of a vertex
+		list< pair<ll, ll> >::iterator i;
+		for (i = adj[u].begin(); i != adj[u].end(); ++i)
+		{
+			// Get vertex label and weight of current adjacent
+			// of u.
+			ll v = (*i).first;
+			ll weight = (*i).second;
+
+			// If there is shorted path to v through u.
+			if (f[v] == false && dist[v] > dist[u] + weight)
+			{
+				// Updating distance of v
+				dist[v] = dist[u] + weight;
+                loc[v] = u;
+				pq.push(make_pair(dist[v], v));
+			}
+		}
+	}
+
+    ll tmp = loc[V-1];
+    vector <int> ans;
+    ans.pb(V-1);
+   // cout << tmp << endl;
+    while(tmp != 0){
+       // cout << tmp << endl;
+        if(tmp == -1){
+           cout << -1 << endl;
+           return; 
+        } 
+        ans.pb(tmp);
+        tmp = loc[tmp];
+    }
+    reverse(ans.begin(),ans.end());
+    for(auto a: ans){
+        cout << a << " ";
+    }
+	// Print shortest distances stored in dist[]
+	/* printf("Vertex Distance from Source\n");
+	for (int i = 0; i < V; ++i)
+		printf("%d \t\t %d\n", i, dist[i]); */
+}
 
 
 

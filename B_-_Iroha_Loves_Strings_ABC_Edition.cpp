@@ -39,6 +39,17 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 //====================================//
 
 void solve(){
+    int n,l;
+    cin >> n >> l;
+    vector <string> s(n);
+    for1(n){
+        cin >> s[i];
+    }
+    sort(s.begin(),s.end());
+    string ans = s[0];
+    for1(n){
+        cout << s[i];
+    }
 
 }
 
@@ -49,7 +60,7 @@ int main()
     //Read;Write;
     /* int t;
     cin >> t;
-    while(t--)  */
+    while(t--) */ 
         solve();
     
 

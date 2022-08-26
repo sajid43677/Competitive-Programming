@@ -27,7 +27,7 @@ template <typename Arg1, typename... Args>
 void __f (const char* names, Arg1&& arg1, Args&&... args)
 {
     const char* comma = strchr (names + 1, ',');
-    cout.write (names, comma - names) << ": " << arg1 << " |"; __f (comma + 1, args...);
+    cout.write (names, comma - names) << ": " << arg1 << " ,"; __f (comma + 1, args...);
 }
 
 //              D, U, R, L, DR, DL, UR, UL        D = Down, R = Right, L = Left, U = Up
@@ -39,17 +39,36 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 //====================================//
 
 void solve(){
+    int arr[105] = {0};
+    int n,a,cnt = 0;
+    cin >> n;
+    for1(n){
+        cin >> a;
+        arr[i] = a;
+        if(a >= 4) {cnt++;
+        arr[i] = INT32_MIN;}
+        for(int j = i-1; j >=0;j--){
+            arr[j] += a;
+
+            //__f("i,j,arr[j]",i,j,arr[j]);
+            if(arr[j] >= 4){
+                cnt++;
+                arr[j] = INT32_MIN;
+            }
+        }
+    }
+    cout << cnt;
 
 }
 
 //FuzzyCarnage
 int main()
 {
-    Boost;
+    //Boost;
     //Read;Write;
-    /* int t;
+   /*  int t;
     cin >> t;
-    while(t--)  */
+    while(t--) */ 
         solve();
     
 

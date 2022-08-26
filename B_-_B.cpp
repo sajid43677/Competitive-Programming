@@ -39,16 +39,22 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 //====================================//
 
 void solve(){
-  int n,a,b;
-  cin >> n;
-  int cnt = 1;
-  b = 0;
-  for1(n){
-    cin >> a;
-    if(a < b) cnt++;
-    b = a;
+  int s,n,a,cnt,in,as,an;
+  cin >> s >> n;
+  cin >> a;
+  as = a;
+  cnt = 0;
+  for(int i = 1; i < n;i++){
+    cin >> an;
+    in = an-as-2;
+    cnt += in/2;
+    as = an;
   }
-  cout << cnt << endl;
+  an = a + s;
+  in = an - as - 2;
+  cnt += in/2;
+  cout << cnt;
+
 }
 
 //FuzzyCarnage
@@ -58,7 +64,7 @@ int main()
     //Read;Write;
     /* int t;
     cin >> t;
-    while(t--)  */
+    while(t--) */ 
         solve();
     
 

@@ -37,9 +37,47 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 
 //          Code Starts Here          //
 //====================================//
+int h[3] = {0};
+int w[3] = {0};
+int arr[3][3] = {{0}};
+int ansa = 0;
+void recur(int ij){
+    int i = ij/3;
+    int j = ij%3;
+    if(i == 3){
+        ansa++;
+        return;
+    }
+    if(i == 2){
+        int ans = w[j] - arr[0][j] - arr[1][j];
+        if(ans <= 0) return;
+        arr[i][j] = ans;
+        recur(ij+1);
+    }
+    else if(j == 2){
+        int ans = h[i] - arr[i][0] - arr[i][1];
+        if(ans <= 0) return;
+        arr[i][j] = ans;
+        recur(ij+1);
+    }
+    else{
+        for(int x = 1; x <= 30;x++){
+            int ans = x;
+            arr[i][j] = ans;
+            recur(ij+1);
+        }
+    }
+
+}
 
 void solve(){
-
+    cin >> h[0]>>h[1]>>h[2]>>w[0]>>w[1]>>w[2];
+    if (h[0] + h[1] + h[2] != w[0] + w[1] + w[2]) {
+    cout << 0 << "\n";
+    return;
+  }
+    recur(0);
+    cout << ansa << endl;
 }
 
 //FuzzyCarnage
