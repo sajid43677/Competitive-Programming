@@ -544,7 +544,60 @@ void Graph::shortestPath(int src)
 		printf("%d \t\t %d\n", i, dist[i]); */
 }
 
+//dijkstra algo (simplified)
+=============================
+typedef pair<ll, ll> pll;
+const int N = (1e5)+10;
 
+vector <pair<ll,ll>> g[N];
+ll w[N] = {0};
+int visited[N];
+
+void dijkstra(int s,int n){
+    for1(N){
+        w[i] = INT64_MAX;
+    }
+    priority_queue<pll, vector<pll>, greater<pll> > pq;
+    vector <ll> loc(N+1,-1);
+    w[s] = 0;
+    loc[s] = 0;
+    pq.push({0,s});
+    while(!pq.empty()){
+        pll node = pq.top();
+        ll v = node.second;
+        ll wv = node.first;
+        //__f("v,wv",v,wv);
+        pq.pop();
+        if(w[v] != wv) continue;
+        for(auto ch: g[v]){
+            if(ch.second + wv < w[ch.first]){
+                w[ch.first] = ch.second + wv;
+                loc[ch.first] = v;
+                pq.push({w[ch.first],ch.first});
+            }
+        }
+    }
+    /* for(int i = 1; i <= n;i++){
+        cout << w[i] << endl;
+    }  */
+    int tmp = loc[n];
+    vector <ll> ans;
+    ans.pb(n);
+    //cout << tmp << endl;
+    while(tmp != 0){
+        //cout << tmp << endl;
+        if(tmp == -1){
+           cout << -1 << endl;
+           return; 
+        } 
+        ans.pb(tmp);
+        tmp = loc[tmp];
+    }
+    reverse(ans.begin(),ans.end());
+    for(auto a: ans){
+        cout << a << " ";
+    }
+}
 
 
 
