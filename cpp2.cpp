@@ -3,6 +3,8 @@ using namespace std;
 
 
 typedef long long ll;
+typedef pair<ll, ll> pll;
+typedef pair<int, int> pi;
 
 //double pi = acos(-1.0);
 
@@ -17,6 +19,7 @@ typedef long long ll;
 #define Write freopen("output.txt","w",stdout);
 #define pb(x) push_back(x);
 #define for1(n) for(int i = 0; i < n;i++)
+#define for2(n) for(int i = 1; i <= n;i++)
 #define lohi int, vector<int>, greater<int>>
 #define mkp make_pair
 #define pendl cout << '\n' 
