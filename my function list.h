@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-//sum of digits
+// sum of digits
 //===============
 int sumOfDigit(long long num){
     int sum = 0;
@@ -11,7 +11,7 @@ int sumOfDigit(long long num){
     }
     return sum;
 }
-//sum of digits untill one digit.
+// sum of digits untill one digit.
 int singleDigit(int num){
     int sum = 0;
     while(true){
@@ -23,7 +23,7 @@ int singleDigit(int num){
         }
 
 }
-//sum of chars of a string where a = 1,b=2 ....z=26
+// sum of chars of a string where a = 1,b=2 ....z=26
 int sumOfChar(string s){
     int sum1 = 0;
     for(int i = 0; i < s.length(); i ++){
@@ -36,7 +36,7 @@ int sumOfChar(string s){
     }
     return sum1;
 }
-//reverse a number
+// reverse a number
 // ==================
 int reversDigits(int num)
 {
@@ -47,7 +47,7 @@ int reversDigits(int num)
     }
     return rev_num;
 }
-//palindrome check
+// palindrome check
 // ====================
 int checkPalindrome(string str)
 {
@@ -70,7 +70,7 @@ int checkPalindrome(string str)
     return true;
 }
 
-//Sub sequence string check
+// Sub sequence string check
 // ============================
 bool isSubSequence(string stm, string st){
     int len,lenm;
@@ -88,7 +88,7 @@ bool isSubSequence(string stm, string st){
     return false;
 }
 
-//gcd in recursive and lcd
+// gcd in recursive and lcd
 // ==========================
 int gcd(int i , int j){
     if(i == 0)
@@ -100,7 +100,7 @@ int lcd(int i , int j){
     return (i*j)/gcd(i,j);
 }
 
-//sieve of prime
+// seive of prime
 // ================
 long long is_prime[10000000];
 void sieve_prime(){
@@ -114,7 +114,7 @@ void sieve_prime(){
 	}
 }
 
-//count number of 1's of binary representation of a integer
+// count number of 1's of binary representation of a integer
 // ============================================================
 int cntOne(ll n){
     int cnt = 0;
@@ -125,7 +125,7 @@ int cntOne(ll n){
 return cnt;
 }
 
-//determine the number power of 2 or not
+// determine the number power of 2 or not
 // ========================================
 bool po2(int n){
     if(n==0)
@@ -135,7 +135,7 @@ bool po2(int n){
     return false;
 }
 
-//determine ith bit of a number is set or not(1 or 0)
+// determine ith bit of a number is set or not(1 or 0)
 // =====================================================
 bool ithSet(int n)
 {
@@ -145,7 +145,7 @@ bool ithSet(int n)
         return false;
 }
 
-//for getting possible subset of a string
+// for getting possible subset of a string
 // =========================================
 string sr[100000];
 
@@ -166,7 +166,7 @@ void subSets(string s){
     }
 }
 
-//total number of divisors of given number
+// total number of divisors of given number
 // ==========================================
 int nod(int n){
     int cnt = 0;
@@ -179,7 +179,7 @@ int nod(int n){
     return cnt;
 }
 
-//largest power of 2 (most significant bit in binary form), which is less than or equal to the given number N
+// largest power of 2 (most significant bit in binary form), which is less than or equal to the given number N
 // ===============================================================================================================
 ll large2p(ll N){
     N = N| (N>>1);
@@ -192,12 +192,12 @@ ll large2p(ll N){
     return (N+1) >> 1;
 }
 
-//Returns the rightmost 1 in decimal representation of x
+// Returns the rightmost 1 in decimal representation of x
 // ========================================================
 int num = n & (-n);
 
 
-//exponentiation modulas (x^n)%mod
+// exponentiation modulas (x^n)%mod
 // ===============================
 ll exp(ll x, ll n, ll mod)
 {
@@ -208,7 +208,7 @@ ll exp(ll x, ll n, ll mod)
 }
 
 
-//vector second element sort function decending
+// vector second element sort function decending
 // =============================================
 bool srt(const pair<int,int> &a,
               const pair<int,int> &b)
@@ -217,7 +217,7 @@ bool srt(const pair<int,int> &a,
 }
 
 
-//line to words
+// line to words
 // ===============
 vector <string> ltow;
 
@@ -229,7 +229,7 @@ void ltw(string s){
     }
 }
 
-//decimal to binary string format
+// decimal to binary string format
 // =================================
 
 string decimalToBinary(ll n)
@@ -245,7 +245,7 @@ string decimalToBinary(ll n)
     return "0";
 }
 
-//number of co primes of n less than n
+// number of co primes of n less than n (euler phi)
 // ======================================
 int phi (int n) {
 	int result = n;
@@ -260,7 +260,7 @@ int phi (int n) {
 	return result;
 }
 
-//bigmod
+// bigmod
 // =========
 ll bigmod(ll a, ll b, ll m){
     if(b==0){
@@ -274,7 +274,7 @@ ll bigmod(ll a, ll b, ll m){
     return x;
 }
 
-//total digits in factorial of x
+// total digits in factorial of x
 // ================================
 ll digitsFact(ll x){
     double ans = 0;
@@ -285,7 +285,7 @@ ll digitsFact(ll x){
     return ans;
 }
 
-//ternary search
+// ternary search
 ================
 int ternarySearch(int arr[], int n,int k){
     int l = 0;
@@ -315,7 +315,7 @@ int ternarySearch(int arr[], int n,int k){
     return -1;
 }
 
-//Binary search
+// Binary search
 =================
 void binarySearch(int array[],int x,int n){
     int k = 0;
@@ -328,7 +328,7 @@ void binarySearch(int array[],int x,int n){
 }
 
 
-//sum of divisors of a given number
+// sum of divisors of a given number
 ===================================
 ll sod(int n){
     ll sum = 0;
@@ -342,11 +342,15 @@ ll sod(int n){
 }
 
 
-//more efficient seive and nod
+// more efficient seive and nod
 ==============================
 ll is_prime[mx+1],siv[mx+1],cnt;
 void sieve_prime(){
 	long long int i, j;
+    siv[0] = siv[1] = 1;
+    for(i=4; i < mx;i+=2){
+        siv[i] = 1;
+    }
     for (i=3; i<mx; i+=2)
         if(!siv[i])
             for (j=i*i; j<mx; j+=i+i)
@@ -411,7 +415,7 @@ void bfs(int s,int t){
         }
     }
     if(visited[t] == 0){
-        cout << "No path found" << endl;
+        cout << "No path found" << cendl;
     }
     vector <int> ans;
     ans.pb(t);
@@ -427,7 +431,7 @@ void bfs(int s,int t){
 }
 
 
-//dijkstra algo (if node number is n then pass graph(n+1))
+// dijkstra algo (if node number is n then pass graph(n+1))
 ===========================================================
 # define INF INT64_MAX
 
@@ -544,7 +548,7 @@ void Graph::shortestPath(int src)
 		printf("%d \t\t %d\n", i, dist[i]); */
 }
 
-//dijkstra algo (simplified)
+// dijkstra algo (simplified)
 =============================
 typedef pair<ll, ll> pll;
 const int N = (1e5)+10;
@@ -599,7 +603,39 @@ void dijkstra(int s,int n){
     }
 }
 
-
+// segmented seive
+// ================
+#include <bits/stdc++.h>
+using namespace std;
+void sieve(int lmt, vector<int>& prime) {
+   bool mark[lmt + 1];
+   memset(mark, false, sizeof(mark));
+   for (int i = 2; i <= lmt; ++i) {
+      if (mark[i] == false) {
+         prime.push_back(i);
+         for (int j = i; j <= lmt; j += i)
+            mark[j] = true;
+      }
+   }
+}
+void segSeive(int low, int high) {
+   int lmt = floor(sqrt(high)) + 1;
+   vector<int> prime;
+   sieve(lmt, prime);
+   int n = high - low + 1;
+   bool mark[n + 1];
+   memset(mark, false, sizeof(mark));
+   for (int i = 0; i < prime.size(); i++) {
+      int lowLim = floor(low / prime[i]) * prime[i];
+      if (lowLim < low)
+         lowLim += prime[i];
+      for (int j = lowLim; j <= high; j += prime[i])
+         mark[j - low] = true;
+   }
+   for (int i = low; i <= high; i++)
+      if (!mark[i - low])
+         cout << i << " ";
+}
 
 
 

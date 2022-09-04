@@ -22,7 +22,7 @@ typedef pair<int, int> pi;
 #define for2(n) for(int i = 1; i <= n;i++)
 #define lohi int, vector<int>, greater<int>>
 #define mkp make_pair
-#define pendl cout << '\n'
+#define pendl cout << '\n' 
 
 template <typename Arg1>
 void __f (const char* name, Arg1&& arg1) { cout << name << ": " << arg1 << endl; }
@@ -47,14 +47,14 @@ int visited[maax];
 int p[maax];
 int dist[maax];
 
-bool bfs(int s,int t){
+int bfs(int s,int t){
     for1(maax) visited[i] = p[i] = dist[i] = 0;
     dist[s] = 0;
     queue <int> q;
     q.push(s);
     visited[s] = 1;
     p[s] = s;
-
+   
     while(!q.empty()){
         int mother = q.front();
         //cout <<endl << mother << endl;
@@ -62,6 +62,7 @@ bool bfs(int s,int t){
         for(int i = 0; i < vc[mother].size(); i++){
             if(visited[vc[mother][i]] == 0){
                 int child = vc[mother][i];
+                if(child == t) return 1;
                 dist[child] = dist[mother]++;
                 p[child] = mother;
                 visited[child] = 1;
@@ -71,9 +72,10 @@ bool bfs(int s,int t){
         }
     }
     if(visited[t] == 0){
-        return false;
+        return 0;
     }
-    else true;
+    else  return 1;
+
     /* vector <int> ans;
     ans.pb(t);
     int curr = t;
@@ -90,6 +92,9 @@ bool bfs(int s,int t){
 void solve(){
     int n,m;
     while(cin >> n >> m){
+        for1(maax){
+            vc[i].clear();
+        }
         if(n==0 && m == 0) break;
         int w,v,p;
         for1(m){
@@ -107,8 +112,7 @@ void solve(){
             if(flg == 1) break;
         }
         if(flg == 1) cout << 0 << endl;
-        else cout << 1 << endl;
-        vc->clear();
+        else cout << 1 << endl; 
     }
 }
 
@@ -121,7 +125,7 @@ int main()
     cin >> t;
     while(t--)  */
         solve();
-
+    
 
 }
 
