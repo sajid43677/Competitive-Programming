@@ -605,38 +605,96 @@ void dijkstra(int s,int n){
 
 // segmented seive
 // ================
-#include <bits/stdc++.h>
-using namespace std;
-void sieve(int lmt, vector<int>& prime) {
-   bool mark[lmt + 1];
-   memset(mark, false, sizeof(mark));
-   for (int i = 2; i <= lmt; ++i) {
-      if (mark[i] == false) {
-         prime.push_back(i);
-         for (int j = i; j <= lmt; j += i)
-            mark[j] = true;
-      }
-   }
+void sieve_prime(int n,vector<ll>& prime){
+	ll i, j;
+    ll mx = n;
+    ll siv[mx+1];
+    allZero(siv);
+    siv[0] = siv[1] = 1;
+    for(i=4; i <= mx;i+=2){
+        siv[i] = 1;
+    }
+    for (i=3; i<=mx; i+=2)
+        if(!siv[i])
+            for (j=i*i; j<=mx; j+=i+i)
+                siv[j]=1;
+    prime.pb(2);
+    for (i=3; i<=mx; i+=2)
+        if(!siv[i]) prime.pb(i);
+    return;
 }
-void segSeive(int low, int high) {
-   int lmt = floor(sqrt(high)) + 1;
-   vector<int> prime;
-   sieve(lmt, prime);
-   int n = high - low + 1;
+void PrimeInRange(ll low, ll high) {
+    if(low == 1)++low;
+   ll lmt = sqrtl(high);
+   vector<ll> prime;
+   sieve_prime(lmt, prime);
+   ll n = high - low + 1;
    bool mark[n + 1];
    memset(mark, false, sizeof(mark));
-   for (int i = 0; i < prime.size(); i++) {
-      int lowLim = floor(low / prime[i]) * prime[i];
-      if (lowLim < low)
-         lowLim += prime[i];
-      for (int j = lowLim; j <= high; j += prime[i])
-         mark[j - low] = true;
+   //cout << prime.size() << endl;
+   for(int i = 0; i < (int)prime.size() && prime[i] <= lmt; i++) {
+        ll p = prime[i];
+        //cout << p << " i: "<< i << endl;
+        ll j = max(p*p,((low+p-1)/p)*p);
+        for(; j <= high; j += p)
+            mark[j - low] = true;
    }
-   for (int i = low; i <= high; i++)
+   for (ll i = low; i <= high; i++)
       if (!mark[i - low])
-         cout << i << " ";
+         cout << i << endl;
 }
 
-
+//prime factorization
+=======================
+#define MAXN   10000001
+ 
+// stores smallest prime factor for every number
+int spf[MAXN];
+ 
+// Calculating SPF (Smallest Prime Factor) for every
+// number till MAXN.
+// Time Complexity : O(nloglogn)
+void sieve()
+{
+    spf[1] = 1;
+    for (int i=2; i<MAXN; i++)
+ 
+        // marking smallest prime factor for every
+        // number to be itself.
+        spf[i] = i;
+ 
+    // separately marking spf for every even
+    // number as 2
+    for (int i=4; i<MAXN; i+=2)
+        spf[i] = 2;
+ 
+    for (int i=3; i*i<MAXN; i++)
+    {
+        // checking if i is prime
+        if (spf[i] == i)
+        {
+            // marking SPF for all numbers divisible by i
+            for (int j=i*i; j<MAXN; j+=i)
+ 
+                // marking spf[j] if it is not
+                // previously marked
+                if (spf[j]==j)
+                    spf[j] = i;
+        }
+    }
+}
+ 
+// A O(log n) function returning primefactorization
+// by dividing by smallest prime factor at every step
+vector<int> getFactorization(int x)
+{
+    vector<int> ret;
+    while (x != 1)
+    {
+        ret.push_back(spf[x]);
+        x = x / spf[x];
+    }
+    return ret;
+}
 
 

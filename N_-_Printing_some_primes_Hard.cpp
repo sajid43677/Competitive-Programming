@@ -40,54 +40,34 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 
 //          Code Starts Here          //
 //====================================//
-const int mx = 1e5+5;
-ll siv[mx+1],cnt;
-vector <ll> is_prime;
-void sieve_prime(){
-	long long int i, j;
-    siv[0] = siv[1] = 1;
-    for(i=4; i < mx;i+=2){
-        siv[i] = 1;
-    }
-    for (i=3; i<mx; i+=2)
-        if(!siv[i])
-            for (j=i*i; j<mx; j+=i+i)
-                siv[j]=1;
-    is_prime.pb(2);
-    for (i=3; i<mx; i+=2)
-        if(!siv[i]) is_prime.pb(i);
-    return;
-}
+const int mx = 1e8;
+int status[(mx/32)+2];
 
-int nod(int n){
-    int cnt = 0;
-    for(int i = 2; i*i <= n; i++){
-        int tmp = n/i;
-        if(n%i==0 && !siv[i]){
-            cnt++;
-           // cout << i << " ";
-        }
-        if(i != tmp && !siv[tmp] && n%tmp == 0 ) {
-            cnt++;
-            //cout << tmp << " d ";
-        }
-    }
-    //cout << endl;
-    return cnt;
-}
+bool Check(int N,int pos){return (bool)(N & (1<<pos));}
+int Set(int N,int pos){	return N=N | (1<<pos);}
 
+void sieve()
+{
+	 int i, j, sqrtN; 
+     sqrtN = int( sqrt( mx ) );
+     for( i = 3; i <= sqrtN; i += 2 ) 
+     {
+		 if( Check(status[i>>5],i&31)==0)
+		 {
+	 		 for( j = i*i; j <= mx; j += (i<<1) )
+			 {
+				 status[j>>5]=Set(status[j>>5],j & 31)   ;
+	 		 }
+		 }
+	 }
+	 puts("2");
+	 for(i=3;i<=mx;i+=2)
+		 if( Check(status[i>>5],i&31)==0)
+	 	 printf("%d\n",i);
+}
 void solve(){
-    sieve_prime();
-    int n,k;
-    int cnt = 0;
-    cin >> n >> k;
-    for(int i = 1; is_prime[i] <= n; i++){
-        int tmp = is_prime[i]+is_prime[i-1] + 1;
-        if(tmp > n) break;
-        if(!siv[tmp])cnt++;
-    }
-    if(cnt >= k)cout << "YES" << endl;
-    else cout << "NO" << endl;
+    sieve();
+
 }
 
 //FuzzyCarnage

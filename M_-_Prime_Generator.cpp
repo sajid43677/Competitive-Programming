@@ -40,64 +40,61 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 
 //          Code Starts Here          //
 //====================================//
-const int mx = 1e5+5;
-ll siv[mx+1],cnt;
-vector <ll> is_prime;
-void sieve_prime(){
-	long long int i, j;
+
+
+void sieve_prime(int n,vector<ll>& prime){
+	ll i, j;
+    ll mx = n;
+    ll siv[mx+1];
+    allZero(siv);
     siv[0] = siv[1] = 1;
-    for(i=4; i < mx;i+=2){
+    for(i=4; i <= mx;i+=2){
         siv[i] = 1;
     }
-    for (i=3; i<mx; i+=2)
+    for (i=3; i<=mx; i+=2)
         if(!siv[i])
-            for (j=i*i; j<mx; j+=i+i)
+            for (j=i*i; j<=mx; j+=i+i)
                 siv[j]=1;
-    is_prime.pb(2);
-    for (i=3; i<mx; i+=2)
-        if(!siv[i]) is_prime.pb(i);
+    prime.pb(2);
+    for (i=3; i<=mx; i+=2)
+        if(!siv[i]) prime.pb(i);
     return;
 }
-
-int nod(int n){
-    int cnt = 0;
-    for(int i = 2; i*i <= n; i++){
-        int tmp = n/i;
-        if(n%i==0 && !siv[i]){
-            cnt++;
-           // cout << i << " ";
-        }
-        if(i != tmp && !siv[tmp] && n%tmp == 0 ) {
-            cnt++;
-            //cout << tmp << " d ";
-        }
-    }
-    //cout << endl;
-    return cnt;
+void PrimeInRange(ll low, ll high) {
+    if(low == 1)++low;
+   ll lmt = sqrtl(high);
+   vector<ll> prime;
+   sieve_prime(lmt, prime);
+   ll n = high - low + 1;
+   bool mark[n + 1];
+   memset(mark, false, sizeof(mark));
+   //cout << prime.size() << endl;
+   for(int i = 0; i < (int)prime.size() && prime[i] <= lmt; i++) {
+        ll p = prime[i];
+        //cout << p << " i: "<< i << endl;
+        ll j = max(p*p,((low+p-1)/p)*p);
+        for(; j <= high; j += p)
+            mark[j - low] = true;
+   }
+   for (ll i = low; i <= high; i++)
+      if (!mark[i - low])
+         cout << i << endl;
 }
-
 void solve(){
-    sieve_prime();
-    int n,k;
-    int cnt = 0;
-    cin >> n >> k;
-    for(int i = 1; is_prime[i] <= n; i++){
-        int tmp = is_prime[i]+is_prime[i-1] + 1;
-        if(tmp > n) break;
-        if(!siv[tmp])cnt++;
-    }
-    if(cnt >= k)cout << "YES" << endl;
-    else cout << "NO" << endl;
+    ll l,m;
+    cin >> l >> m;
+    PrimeInRange(l,m);
+    cout << endl;
 }
 
 //FuzzyCarnage
 int main()
 {
-    Boost;
+    //Boost;
     //Read;Write;
-    /* int t;
+    int t;
     cin >> t;
-    while(t--)  */
+    while(t--) 
         solve();
     
 

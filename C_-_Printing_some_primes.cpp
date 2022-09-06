@@ -40,7 +40,7 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 
 //          Code Starts Here          //
 //====================================//
-const int mx = 1e5+5;
+const int mx = 1e7+5;
 ll siv[mx+1],cnt;
 vector <ll> is_prime;
 void sieve_prime(){
@@ -76,18 +76,22 @@ int nod(int n){
     return cnt;
 }
 
+vector<ll> getFactorization(int n){
+    vector <ll> vc;
+    for(ll i = 0; i < is_prime.size();i++){
+        if(n%is_prime[i] == 0){
+            vc.pb(is_prime[i]);
+        }
+    }
+    return vc;
+}
 void solve(){
     sieve_prime();
-    int n,k;
-    int cnt = 0;
-    cin >> n >> k;
-    for(int i = 1; is_prime[i] <= n; i++){
-        int tmp = is_prime[i]+is_prime[i-1] + 1;
-        if(tmp > n) break;
-        if(!siv[tmp])cnt++;
+    ll n = 1000986;
+    vector <ll> p = getFactorization(n);
+    for(auto a: p){
+        cout << a << endl;
     }
-    if(cnt >= k)cout << "YES" << endl;
-    else cout << "NO" << endl;
 }
 
 //FuzzyCarnage

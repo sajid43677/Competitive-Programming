@@ -30,7 +30,7 @@ template <typename Arg1, typename... Args>
 void __f (const char* names, Arg1&& arg1, Args&&... args)
 {
     const char* comma = strchr (names + 1, ',');
-    cout.write (names, comma - names) << ": " << arg1 << " |"; __f (comma + 1, args...);
+    cout.write (names, comma - names) << ": " << arg1 << " -"; __f (comma + 1, args...);
 }
 
 //              D, U, R, L, DR, DL, UR, UL        D = Down, R = Right, L = Left, U = Up
@@ -40,54 +40,50 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 
 //          Code Starts Here          //
 //====================================//
-const int mx = 1e5+5;
+
+/* const int mx = 1e7+5;
 ll siv[mx+1],cnt;
-vector <ll> is_prime;
-void sieve_prime(){
+vector <ll> is_prime; */
+ll sivmrk[100005];
+void sieve_prime(ll n){
+    ll mx = n;
+    ll siv[mx+1],cnt;
+    allZero(siv);
 	long long int i, j;
     siv[0] = siv[1] = 1;
-    for(i=4; i < mx;i+=2){
+    sivmrk[2] = 1;
+    for(i=4; i <= mx;i+=2){
         siv[i] = 1;
+        sivmrk[i] = 2;
     }
+    cnt = 1;
+    for (i=3; i<=mx; i+=2){
+        //cout << sivmrk[i] << " " << i << " ss"<< siv[i] << endl;
+        if(!siv[i]){
+            sivmrk[i] =1;
+            //cout << sivmrk[i] << " " << i << "ss" << endl;
+            for (j=i*i; j<=mx; j+=i+i){
+                    sivmrk[j] = 2;
+                siv[j]=1;}
+        }
+    }
+    /* is_prime.pb(2);
     for (i=3; i<mx; i+=2)
-        if(!siv[i])
-            for (j=i*i; j<mx; j+=i+i)
-                siv[j]=1;
-    is_prime.pb(2);
-    for (i=3; i<mx; i+=2)
-        if(!siv[i]) is_prime.pb(i);
+        if(!siv[i]) is_prime.pb(i); */
     return;
 }
 
-int nod(int n){
-    int cnt = 0;
-    for(int i = 2; i*i <= n; i++){
-        int tmp = n/i;
-        if(n%i==0 && !siv[i]){
-            cnt++;
-           // cout << i << " ";
-        }
-        if(i != tmp && !siv[tmp] && n%tmp == 0 ) {
-            cnt++;
-            //cout << tmp << " d ";
-        }
-    }
-    //cout << endl;
-    return cnt;
-}
 
 void solve(){
-    sieve_prime();
-    int n,k;
-    int cnt = 0;
-    cin >> n >> k;
-    for(int i = 1; is_prime[i] <= n; i++){
-        int tmp = is_prime[i]+is_prime[i-1] + 1;
-        if(tmp > n) break;
-        if(!siv[tmp])cnt++;
+    ll n;
+    cin >> n;
+    sieve_prime(n+1);
+    ll mx = 1;
+    if(n > 2) mx = 2;
+    cout << mx << endl;
+    for(int i = 2; i <= n+1;i++){
+        cout << sivmrk[i] << " ";
     }
-    if(cnt >= k)cout << "YES" << endl;
-    else cout << "NO" << endl;
 }
 
 //FuzzyCarnage
@@ -102,13 +98,6 @@ int main()
     
 
 }
-
-
-
-
-
-
-
 
 
 
