@@ -40,58 +40,35 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 
 //          Code Starts Here          //
 //====================================//
-const ll mx = 2000005;
-ll siv[mx+1];
-vector <pair<ll,ll>> mrk;
-vector <ll> prime;
-//vector <ll> mrks(mx);
-void sieve_prime(){
-	ll i, j;
-    
-    siv[0] = siv[1] = 1;
-    for(i=4; i <= mx;i+=2){
-        siv[i] = 1;
-    }
-    for (i=3; i<=mx; i+=2)
-        if(!siv[i])
-            for (j=i*i; j<=mx; j+=i+i)
-                siv[j]=1;
-    prime.pb(2);
-    for (i=3; i<=mx; i+=2)
-        if(!siv[i]) prime.pb(i);
-    return;
-}
 
-ll nod(ll n)
-{
-   ll sum = 0,k = 0;
-   for(ll i=0; prime[i]*prime[i]<=n;i++){
-        k=0;
-        while(n%prime[i]==0)
-        {
-            n/=prime[i];
-            k++;
-        }
-        sum +=k;
-    }
-        if(n>1) sum++;
-        return sum;
-}
+char alp[27] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 
 void solve(){
-    sieve_prime();
-    ll tst = 1;
-    ll n;
-    for(int i = 1; i <= 2000000;i++){
-        ll tmp = nod(i);
-        mrk.pb(mkp(tmp,i));
+    string s;
+    cin >> s;
+    int lst = s[s.size()-1] - 'a' + 1,fst = s[0] - 'a' + 1;
+    int flg = 0;
+    if(lst < fst) {swap(lst,fst);flg = 1;}
+    vector <pair<int,int>> vc;
+    int cnt = 0,tmp = 0;
+    //cout << fst<< " gg " << lst << endl;
+    for(int i = 1; i < s.size()-1;i++){
+        tmp = s[i] - 'a'+1;
+        //cout << tmp << " " << s[i] << endl;
+        if(tmp >= fst && tmp <= lst){
+            cnt++;
+            vc.pb(mkp(tmp,i+1));
+        }
     }
-    sort(mrk.begin(),mrk.end());
-    while(cin >> n){
-        if(n==0) break;
-        cout <<"Case "<< tst++ <<": "<< mrk[n-1].yy<< endl;
-        
+    if(flg == 1) sort(vc.begin(),vc.end(),greater<pair<int,int>>());
+    else sort(vc.begin(),vc.end());
+    cout << lst - fst << " " << cnt+2 << endl;
+    cout << 1 << " ";
+    for(auto a: vc){
+        cout <<a.yy << " ";
     }
+    cout << s.size();
+    pendl;
 }
 
 //FuzzyCarnage
@@ -99,9 +76,9 @@ int main()
 {
     Boost;
     //Read;Write;
-    /* int t;
+    int t;
     cin >> t;
-    while(t--)  */
+    while(t--) 
         solve();
     
 

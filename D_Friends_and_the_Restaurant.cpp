@@ -23,7 +23,7 @@ typedef pair<int, int> pi;
 #define lohi int, vector<int>, greater<int>>
 #define mkp make_pair
 #define pendl cout << '\n' 
-
+#define all(x) x.begin(),x.end()
 template <typename Arg1>
 void __f (const char* name, Arg1&& arg1) { cout << name << ": " << arg1 << endl; }
 template <typename Arg1, typename... Args>
@@ -40,58 +40,28 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 
 //          Code Starts Here          //
 //====================================//
-const ll mx = 2000005;
-ll siv[mx+1];
-vector <pair<ll,ll>> mrk;
-vector <ll> prime;
-//vector <ll> mrks(mx);
-void sieve_prime(){
-	ll i, j;
-    
-    siv[0] = siv[1] = 1;
-    for(i=4; i <= mx;i+=2){
-        siv[i] = 1;
-    }
-    for (i=3; i<=mx; i+=2)
-        if(!siv[i])
-            for (j=i*i; j<=mx; j+=i+i)
-                siv[j]=1;
-    prime.pb(2);
-    for (i=3; i<=mx; i+=2)
-        if(!siv[i]) prime.pb(i);
-    return;
-}
-
-ll nod(ll n)
-{
-   ll sum = 0,k = 0;
-   for(ll i=0; prime[i]*prime[i]<=n;i++){
-        k=0;
-        while(n%prime[i]==0)
-        {
-            n/=prime[i];
-            k++;
-        }
-        sum +=k;
-    }
-        if(n>1) sum++;
-        return sum;
-}
 
 void solve(){
-    sieve_prime();
-    ll tst = 1;
-    ll n;
-    for(int i = 1; i <= 2000000;i++){
-        ll tmp = nod(i);
-        mrk.pb(mkp(tmp,i));
+    int n;
+    cin >> n;
+    int arr[n] = {0};
+    int arr1[n] = {0};
+    vector <int> arr2(n);
+    for1(n) cin >> arr[i];
+    for1(n) cin >> arr1[i];    
+    for1(n) arr2[i] = arr1[i] - arr[i];
+    int cnt = 0;
+    n = n -1 ;
+    sort(all(arr2)); 
+    
+    for(int i = 0; i < n; i++){
+        if(arr2[i]+arr2[n] >= 0){
+            cnt++;
+            n--;
+        }
     }
-    sort(mrk.begin(),mrk.end());
-    while(cin >> n){
-        if(n==0) break;
-        cout <<"Case "<< tst++ <<": "<< mrk[n-1].yy<< endl;
-        
-    }
+    cout << cnt << endl;
+
 }
 
 //FuzzyCarnage
@@ -99,9 +69,9 @@ int main()
 {
     Boost;
     //Read;Write;
-    /* int t;
+    int t;
     cin >> t;
-    while(t--)  */
+    while(t--) 
         solve();
     
 

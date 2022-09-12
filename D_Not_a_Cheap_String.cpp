@@ -40,58 +40,38 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 
 //          Code Starts Here          //
 //====================================//
-const ll mx = 2000005;
-ll siv[mx+1];
-vector <pair<ll,ll>> mrk;
-vector <ll> prime;
-//vector <ll> mrks(mx);
-void sieve_prime(){
-	ll i, j;
-    
-    siv[0] = siv[1] = 1;
-    for(i=4; i <= mx;i+=2){
-        siv[i] = 1;
-    }
-    for (i=3; i<=mx; i+=2)
-        if(!siv[i])
-            for (j=i*i; j<=mx; j+=i+i)
-                siv[j]=1;
-    prime.pb(2);
-    for (i=3; i<=mx; i+=2)
-        if(!siv[i]) prime.pb(i);
-    return;
-}
 
-ll nod(ll n)
-{
-   ll sum = 0,k = 0;
-   for(ll i=0; prime[i]*prime[i]<=n;i++){
-        k=0;
-        while(n%prime[i]==0)
-        {
-            n/=prime[i];
-            k++;
-        }
-        sum +=k;
-    }
-        if(n>1) sum++;
-        return sum;
-}
+
 
 void solve(){
-    sieve_prime();
-    ll tst = 1;
-    ll n;
-    for(int i = 1; i <= 2000000;i++){
-        ll tmp = nod(i);
-        mrk.pb(mkp(tmp,i));
+    string s;
+    int n;
+    vector <pair<char,int>> vc;
+    cin >> s >> n;
+    ll tot = 0;
+    for(int i = 0; i < s.size();i++){
+        vc.pb(mkp(s[i],i));
+        tot += s[i] - 'a'+1;
     }
-    sort(mrk.begin(),mrk.end());
-    while(cin >> n){
-        if(n==0) break;
-        cout <<"Case "<< tst++ <<": "<< mrk[n-1].yy<< endl;
-        
+    sort(vc.begin(),vc.end());
+    /* for(auto a : vc){
+        cout << a;
+    } */
+    //pendl;
+    int arr[s.size()] = {0};
+    int tmp = 0;
+    string ss = "";
+    for(int i = vc.size() - 1; i >= 0;i--){
+        if(tot <= n) break;
+        tot -= vc[i].first - 'a'+1;
+        //cout << tmp << endl;
+        arr[vc[i].yy] = -1;
     }
+    for(int i = 0; i < s.size();i++){
+        if(arr[i] == 0) cout << s[i];
+    }
+    pendl;
+    
 }
 
 //FuzzyCarnage
@@ -99,9 +79,9 @@ int main()
 {
     Boost;
     //Read;Write;
-    /* int t;
+    int t;
     cin >> t;
-    while(t--)  */
+    while(t--) 
         solve();
     
 

@@ -10,6 +10,7 @@ typedef pair<int, int> pi;
 
 #define xx first
 #define yy second
+#define all(x) x.begin(),x.end()
 #define allZero(a) memset(a,0,sizeof(a));
 #define allnegOne(a) memset(a,-1,sizeof(a));
 #define endl "\n"
