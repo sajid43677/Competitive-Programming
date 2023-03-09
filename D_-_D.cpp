@@ -3,11 +3,14 @@ using namespace std;
 
 
 typedef long long ll;
+typedef pair<ll, ll> pll;
+typedef pair<int, int> pi;
 
 //double pi = acos(-1.0);
 
 #define xx first
 #define yy second
+#define all(x) x.begin(),x.end()
 #define allZero(a) memset(a,0,sizeof(a));
 #define allnegOne(a) memset(a,-1,sizeof(a));
 #define endl "\n"
@@ -15,8 +18,9 @@ typedef long long ll;
 #define reverseS string(curr.rbegin(),curr.rend()); //reverse string assignment
 #define Read freopen("input.txt","r",stdin);
 #define Write freopen("output.txt","w",stdout);
-#define pb(x) push_back(x);
+#define pb push_back
 #define for1(n) for(int i = 0; i < n;i++)
+#define for2(n) for(int i = 1; i <= n;i++)
 #define lohi int, vector<int>, greater<int>>
 #define mkp make_pair
 #define pendl cout << '\n' 
@@ -38,47 +42,44 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 //          Code Starts Here          //
 //====================================//
 
+
+
 void solve(){
-    int n;
+    int n,a,b,aa,bb;
     cin >> n;
-    int arr[n+5] = {0};
-    int arr1[n+5] = {0};
-    int cum[n+5] = {0};
-    int cum1[n+5] = {0};
-    int ref[n+5] = {0};
+    int x[n][2];
+    int y[n][2];
+    int mx = -1;
+    int my = -1;
+    ll ans = 0;
     for1(n){
-        cin >> arr[i];
+        cin >> a >> b;
+        x[i][0] = a;
+        y[i][0] = a;
+        mx = max(mx,a);
+        my = max(mx,b);
+        cin >> aa >> bb;
+        x[i][1] = aa;
+        y[i][1] = bb;
+        mx = max(mx,a);
+        my = max(mx,b);
+        /* for(int j = x[i][0]; j <= x[i][1];j++){
+            for(int k = y[i][0]; k <= y[i][1];k++){
+                //__f("j,k",j,k);
+                ans++;
+            }
+        } */
+        ans += (aa-a+1)*(bb-b+1);
     }
-    for1(n){
-        cin >> arr1[i];
-    }
-    cum[0] = arr[0];
-    cum1[0] = arr1[0];
-    for(int i = 1; i < n;i++){
-        cum[i] = cum[i-1] + arr[i];
-        if(arr[i] == arr[i-1]){
-            ref[i] = -1;
-        }
-    }
-    for(int i = 1; i < n;i++){
-        cum1[i] = cum1[i-1] + arr1[i];
-    }
-    cout << arr1[0];
-    for(int i = 1; i < n; i++){
-        //__f("cum,cum1",cum[i],cum1[i]);
-        if(cum[i] == cum1[i] && ref[i] == 0 && i != n-1){
-            cout <<" "<< arr1[i] << " #";
-        }
-        else{
-            cout<<" " << arr1[i];
-        }
-    }
+    
+    
+    cout << ans << endl;
 }
 
 //FuzzyCarnage
 int main()
 {
-    Boost;
+    //Boost;
     //Read;Write;
     /* int t;
     cin >> t;

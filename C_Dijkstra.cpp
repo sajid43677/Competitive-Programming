@@ -59,7 +59,7 @@ void dijkstra(int s,int n){
         ll wv = node.first;
         //__f("v,wv",v,wv);
         pq.pop();
-        if(w[v] != wv) continue;
+        if(w[v] < wv) continue;
         for(auto ch: g[v]){
             if(ch.second + wv < w[ch.first]){
                 w[ch.first] = ch.second + wv;

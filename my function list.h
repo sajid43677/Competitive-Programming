@@ -207,6 +207,57 @@ ll exp(ll x, ll n, ll mod)
     if(n%2==1) return (x*exp((x*x)%mod,n/2,mod))%mod;
 }
 
+//mod multiplication
+//===================
+// Returns (a * b) % mod
+long long modmul(long long a, long long b,
+                               long long mod)
+{
+    long long res = 0; // Initialize result
+ 
+    // Update a if it is more than
+    // or equal to mod
+    a %= mod;
+ 
+    while (b) {
+        // If b is odd, add a with result
+        if (b & 1)
+            res = (res + a) % mod;
+ 
+        // Here we assume that doing 2*a
+        // doesn't cause overflow
+        a = (2 * a) % mod;
+ 
+        b >>= 1; // b = b / 2
+    }
+ 
+    return res;
+}
+//inverse mod
+long long modinv(long long a, long long b,
+                               long long mod)
+{
+    long long res = 1; // Initialize result
+ 
+    // Update a if it is more than
+    // or equal to mod
+    a %= mod;
+ 
+    while (b) {
+        // If b is odd, add a with result
+        if (b & 1)
+            res = (res + a) % mod;
+ 
+        // Here we assume that doing 2*a
+        // doesn't cause overflow
+        a = (a*1ll * a) % mod;
+ 
+        b >>= 1; // b = b / 2
+    }
+ 
+    return res;
+}
+
 
 // vector second element sort function decending
 // =============================================
@@ -406,7 +457,7 @@ void bfs(int s,int t){
         for(int i = 0; i < vc[mother].size(); i++){
             if(visited[vc[mother][i]] == 0){
                 int child = vc[mother][i];
-                dist[child] = dist[mother]++;
+                dist[child] = dist[mother]+1;
                 p[child] = mother;
                 visited[child] = 1;
                 q.push(child);
@@ -572,7 +623,7 @@ void dijkstra(int s,int n){
         ll wv = node.first;
         //__f("v,wv",v,wv);
         pq.pop();
-        if(w[v] != wv) continue;
+        if(w[v] < wv) continue;
         for(auto ch: g[v]){
             if(ch.second + wv < w[ch.first]){
                 w[ch.first] = ch.second + wv;
@@ -697,4 +748,92 @@ vector<int> getFactorization(int x)
     return ret;
 }
 
+//nCr
+//====
+int cal_n(int n){
+   int temp = 1;
+   for (int i = 2; i <= n; i++)
+      temp = temp * i;
+   return temp;
+}
+//function to calculate ncr
+int nCr(int n, int r){
+   return cal_n(n) / (cal_n(r) * cal_n(n - r));
+}
 
+
+//dsu
+============
+const int mx = 200005;
+ll parent[mx];
+ll size[mx];
+
+
+
+void make_set(ll v){
+    parent[v] = v;
+}
+
+int find_set(ll v) {
+    if (v == parent[v])
+        return v;
+    return parent[v] = find_set(parent[v]);
+}
+
+void union_sets(ll a, ll b) {
+    a = find_set(a);
+    b = find_set(b);
+    if (a != b) {
+        if (size[a] < size[b])
+            swap(a, b);
+        parent[b] = a;
+        size[a] += size[b];
+    }
+}
+
+//segment tree sum
+//================
+#define mx 200009
+ll arr[mx];
+ll tree[mx * 3];
+void init(ll node, ll b, ll e)
+{
+    if (b == e) {
+        tree[node] = arr[b];
+        return;
+    }
+    ll Left = node * 2;
+    ll Right = node * 2 + 1;
+    ll mid = (b + e) / 2;
+    init(Left, b, mid);
+    init(Right, mid + 1, e);
+    tree[node] = tree[Left] + tree[Right];
+}
+ll query(ll node, ll b, ll e, ll i, ll j)
+{
+    if (i > e || j < b)
+        return 0; 
+    if (b >= i && e <= j)
+        return tree[node]; 
+    ll Left = node * 2; 
+    ll Right = node * 2 + 1;
+    ll mid = (b + e) / 2;
+    ll p1 = query(Left, b, mid, i, j);
+    ll p2 = query(Right, mid + 1, e, i, j);
+    return p1 + p2; 
+}
+void update(ll node, ll b, ll e, ll i, ll newvalue)
+{
+    if (i > e || i < b)
+        return; 
+    if (b >= i && e <= i) { 
+        tree[node] = newvalue;
+        return;
+    }
+    ll Left = node * 2;
+    ll Right = node * 2 + 1;
+    ll mid = (b + e) / 2;
+    update(Left, b, mid, i, newvalue);
+    update(Right, mid + 1, e, i, newvalue);
+    tree[node] = tree[Left] + tree[Right];
+}

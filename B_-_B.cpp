@@ -3,11 +3,14 @@ using namespace std;
 
 
 typedef long long ll;
+typedef pair<ll, ll> pll;
+typedef pair<int, int> pi;
 
 //double pi = acos(-1.0);
 
 #define xx first
 #define yy second
+#define all(x) x.begin(),x.end()
 #define allZero(a) memset(a,0,sizeof(a));
 #define allnegOne(a) memset(a,-1,sizeof(a));
 #define endl "\n"
@@ -15,8 +18,9 @@ typedef long long ll;
 #define reverseS string(curr.rbegin(),curr.rend()); //reverse string assignment
 #define Read freopen("input.txt","r",stdin);
 #define Write freopen("output.txt","w",stdout);
-#define pb(x) push_back(x);
+#define pb push_back
 #define for1(n) for(int i = 0; i < n;i++)
+#define for2(n) for(int i = 1; i <= n;i++)
 #define lohi int, vector<int>, greater<int>>
 #define mkp make_pair
 #define pendl cout << '\n' 
@@ -38,33 +42,31 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 //          Code Starts Here          //
 //====================================//
 
+
+
 void solve(){
-  int s,n,a,cnt,in,as,an;
-  cin >> s >> n;
-  cin >> a;
-  as = a;
-  cnt = 0;
-  for(int i = 1; i < n;i++){
-    cin >> an;
-    in = an-as-2;
-    cnt += in/2;
-    as = an;
+  int a,b;
+  cin >> a >> b;
+  if(a == 0 && b == 0){
+    cout << "Not a moose";
+    return;
   }
-  an = a + s;
-  in = an - as - 2;
-  cnt += in/2;
-  cout << cnt;
+  if(a == b){
+    cout << "Even " << a+b;
+    return;
+  }
+  cout << "Odd " << 2*max(a,b);
 
 }
 
 //FuzzyCarnage
 int main()
 {
-    Boost;
+    //Boost;
     //Read;Write;
     /* int t;
     cin >> t;
-    while(t--) */ 
+    while(t--)  */
         solve();
     
 

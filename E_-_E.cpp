@@ -3,11 +3,14 @@ using namespace std;
 
 
 typedef long long ll;
+typedef pair<ll, ll> pll;
+typedef pair<int, int> pi;
 
 //double pi = acos(-1.0);
 
 #define xx first
 #define yy second
+#define all(x) x.begin(),x.end()
 #define allZero(a) memset(a,0,sizeof(a));
 #define allnegOne(a) memset(a,-1,sizeof(a));
 #define endl "\n"
@@ -15,8 +18,9 @@ typedef long long ll;
 #define reverseS string(curr.rbegin(),curr.rend()); //reverse string assignment
 #define Read freopen("input.txt","r",stdin);
 #define Write freopen("output.txt","w",stdout);
-#define pb(x) push_back(x);
+#define pb push_back
 #define for1(n) for(int i = 0; i < n;i++)
+#define for2(n) for(int i = 1; i <= n;i++)
 #define lohi int, vector<int>, greater<int>>
 #define mkp make_pair
 #define pendl cout << '\n' 
@@ -37,30 +41,48 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 
 //          Code Starts Here          //
 //====================================//
-int arr[45300] = {0};
+
+
+
+const ll N=2e5+3;
+vector<ll> adj[N];
+ 
+ll n;
+ 
+ll zero=0,one=0;
+ 
+void dfs(int v, int par,int c) {
+    if(c==0){
+        zero++;
+    }else{
+        one++;
+    }
+    for (auto to : adj[v]) {
+        if(to!=par){
+            dfs(to,v,c^1);
+        }
+    }
+}
+ 
 void solve(){
-    int arr[43300] = {0};
-    int n,a,b;
-    cin >> n;
-    for1(n){
-        cin >> a >> b;
-        arr[b]++;
-        arr[b-a]++;
-        arr[b-2*a]++;
+    
+    cin>>n;
+    for(int i=0;i<(n-1);i++){
+        int x,y;
+        cin>>x>>y;
+        adj[x].pb(y);
+        adj[y].pb(x);
     }
-    int mx = 0;
-    for1(45300){
-        mx = max(mx,arr[i]);
-    }
-    mx = ceil(mx/2);
-    mx = max(1,mx);
-    cout << mx << endl;
+    dfs(1,0,0);
+    ll ans=(zero*one)-(n-1);
+    cout<<ans<<endl;
+ 
 }
 
 //FuzzyCarnage
 int main()
 {
-    Boost;
+    //Boost;
     //Read;Write;
     /* int t;
     cin >> t;

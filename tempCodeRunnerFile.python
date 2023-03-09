@@ -1,0 +1,18 @@
+def find_x_y(n):
+  x = n // 2
+  y = n - x
+  while True:
+    sd_x = sum_of_digits(x)
+    sd_y = sum_of_digits(y)
+    if sd_x + 1 == sd_y or sd_x + 0 == sd_y:
+      return (x, y)
+    elif sd_x + 2 == sd_y:
+      y -= 9
+    y -= 1
+    x = n - y
+  print(x,y)
+
+def sum_of_digits(num):
+  return sum(map(int, str(num)))
+n = int(input())
+find_x_y(n)

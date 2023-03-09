@@ -18,7 +18,7 @@ typedef pair<int, int> pi;
 #define reverseS string(curr.rbegin(),curr.rend()); //reverse string assignment
 #define Read freopen("input.txt","r",stdin);
 #define Write freopen("output.txt","w",stdout);
-#define pb(x) push_back(x);
+#define pb push_back
 #define for1(n) for(int i = 0; i < n;i++)
 #define for2(n) for(int i = 1; i <= n;i++)
 #define lohi int, vector<int>, greater<int>>
@@ -42,6 +42,8 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 //          Code Starts Here          //
 //====================================//
 
+
+
 void solve(){
 
 }
@@ -49,7 +51,7 @@ void solve(){
 //FuzzyCarnage
 int main()
 {
-    Boost;
+    //Boost;
     //Read;Write;
     /* int t;
     cin >> t;
