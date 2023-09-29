@@ -47,11 +47,19 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 //====================================//
 
 
-
-
-
+ll cas = 1;
 void solve(){
-    
+    cout << "Case #" << cas++ << ": ";
+    ll x,y,a,b;
+    cin >> x >> y >> a >> b;
+    ll m = x - 1;
+    ll n = y - 1;
+    if(m  > n){
+        cout << "YES" << endl;
+    } 
+    else{
+        cout << "NO" << endl;
+    }
 }
 
 //FuzzyCarnage
@@ -59,10 +67,10 @@ int main()
 {
     Boost;
     //Read;Write;
-    /* int t;
+    int t;
     cin >> t;
-    while(t--)  */
-        solve();
+    while(t--) 
+         solve();
     
 
 }

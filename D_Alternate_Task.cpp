@@ -45,24 +45,46 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 
 //          Code Starts Here          //
 //====================================//
+ll sodd[1005];
+ll sod(int n){
+    ll sum = 0;
+    for(int i = 1; i <= sqrt(n); i++){
+        if(n%i == 0){
+            if(n/i == i) sum += i;
+            else sum = sum + i + n/i;
+        }
+    }
+    return sum;
+}
 
-
-
-
-
+ll cas = 1;
 void solve(){
-    
+    // ll t;
+    // while(true){
+    //     cin >> t;
+    //     if(t == 0) return;
+    //     cout << "Case " << cas++ << ": ";
+    //    // __f("t,sodd[t]",t,sodd[t]);
+    //     if(sodd[t] == 0) cout << -1 << endl;
+    //     else cout << sodd[t] << endl;
+        
+    // }
 }
 
 //FuzzyCarnage
 int main()
 {
+    for2(1000){
+        ll x = sod(i);
+        sodd[x] = i;
+    }
+
     Boost;
     //Read;Write;
-    /* int t;
-    cin >> t;
-    while(t--)  */
-        solve();
+    // int t;
+    // cin >> t;
+    // while(t--) 
+         solve();
     
 
 }

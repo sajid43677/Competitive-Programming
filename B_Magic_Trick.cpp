@@ -51,7 +51,45 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 
 
 void solve(){
-    
+    ll n;
+    cin >> n;
+    vector <pair<string,ll>> vc;
+    for1(n){
+        string s;
+        ll a;
+        cin >> s >> a;
+        vc.pb({s,a});
+    }
+
+    ll cnt = 0;
+    for2(100){
+        ll curr = i;
+        for(auto a: vc){
+            if(a.xx == "DIVIDE"){
+                if(curr%a.yy != 0){
+                    cnt++;break;
+                }
+                else{
+                    curr /= a.yy;
+                }
+            }
+            if(a.xx == "SUBTRACT"){
+                if(curr - a.yy < 0){
+                    cnt++;break;
+                }
+                else{
+                    curr -= a.yy;
+                }
+            }
+            if(a.xx == "MULTIPLY"){
+                curr *= a.yy;
+            }
+            if(a.xx == "ADD"){
+                curr += a.yy;
+            }
+        }
+    }
+    cout << cnt << endl;
 }
 
 //FuzzyCarnage

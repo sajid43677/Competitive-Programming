@@ -5,7 +5,6 @@ using namespace std;
 typedef long long ll;
 typedef pair<ll, ll> pll;
 typedef pair<int, int> pi;
-typedef vector<ll> vi;
 
 //double pi = acos(-1.0);
 
@@ -15,19 +14,16 @@ typedef vector<ll> vi;
 #define allZero(a) memset(a,0,sizeof(a));
 #define allnegOne(a) memset(a,-1,sizeof(a));
 #define endl "\n"
-#define Boost ios_base::sync_with_stdio(false);cin.tie(nullptr);cout.tie(nullptr);
+#define Boost ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 #define reverseS string(curr.rbegin(),curr.rend()); //reverse string assignment
 #define Read freopen("input.txt","r",stdin);
 #define Write freopen("output.txt","w",stdout);
 #define pb push_back
 #define for1(n) for(int i = 0; i < n;i++)
 #define for2(n) for(int i = 1; i <= n;i++)
-#define fori(i,s,n) for(int i = s; i <= n;i++)
 #define lohi int, vector<int>, greater<int>>
 #define mkp make_pair
 #define pendl cout << '\n' 
-#define unqn(x) unique(all(x)) - x.begin() //number of unique element in x
-#define unq(x) x.resize(distance(x.begin(),unique(all(x)))); //converting unique element vector
 
 template <typename Arg1>
 void __f (const char* name, Arg1&& arg1) { cout << name << ": " << arg1 << endl; }
@@ -48,20 +44,35 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 
 
 
-
-
 void solve(){
-    
+    ll n,a,b,c;
+    cin >> a >> b >> c;
+    if(b > a || c + 1 < b){
+        cout << -1 << endl;
+        return;
+    }
+    ll ans = 0;
+    for1(b){
+        ans += i;
+    }
+    a = a - b;
+    if(c == b) b--;
+    else b = c;
+    //__f("a",a);
+    for1(a){
+        ans += b;
+    }
+    cout << ans << endl;
 }
 
 //FuzzyCarnage
 int main()
 {
-    Boost;
+    //Boost;
     //Read;Write;
-    /* int t;
+    int t;
     cin >> t;
-    while(t--)  */
+    while(t--)
         solve();
     
 

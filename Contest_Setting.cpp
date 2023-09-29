@@ -51,7 +51,20 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 
 
 void solve(){
-    
+    ll n,x;
+    cin >> n >> x;
+    ll curr = 0;
+    while(true){
+        curr++;
+        ll tmp = curr*x + (curr/2)*(curr/2) + (curr - curr/2)*(curr - curr/2);
+        if(tmp > n) {
+            curr--;
+            break;
+        }
+    }
+    //__f("curr",curr);
+    ll ans = 1LL << curr;
+    cout << ans << endl;
 }
 
 //FuzzyCarnage
@@ -59,9 +72,9 @@ int main()
 {
     Boost;
     //Read;Write;
-    /* int t;
+    int t;
     cin >> t;
-    while(t--)  */
+    while(t--)  
         solve();
     
 

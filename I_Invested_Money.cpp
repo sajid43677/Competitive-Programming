@@ -48,10 +48,56 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 
 
 
-
-
 void solve(){
-    
+    string s;
+    ll n;
+    cin >> s >> n;
+    map <string,ll> mp;
+    mp["Sat"] = 1;
+    mp["Sun"] = 2;
+    mp["Mon"] = 3;
+    mp["Tue"] = 4;
+    mp["Wed"] = 5;
+    mp["Thu"] = 6;
+    mp["Fri"] = 7;
+    ll curd = mp[s];
+    ll mn = 1e18;
+    fori(j,1,n){
+        ll a;
+        cin >> a;
+        ll day = a*(-1);
+        ll baki = a%7;
+        ll curr = curd;
+        for1(baki){
+            curr--;
+            if(curr == 0) curr = 7;
+        }
+        for1(3){
+            curr = curr + 2;
+            if(curr == 9) day += 31;
+            else if(curr == 8) day += 32;
+            else day += 30;
+            if(curr == 9 || curr == 8) curr = 3;
+            if(day >= 0) break;
+        }
+        if(day < 0){
+            day = day + ((day*(-1))/91)*91;
+            if(day < 0)
+            {
+                for1(3){
+                    curr = curr + 2;
+                    if(curr == 9) day += 31;
+                    else if(curr == 8) day += 32;
+                    else day += 30;
+                    if(curr == 9 || curr == 8) curr = 3;
+                    if(day >= 0) break;
+                }
+            }
+        }
+        mn = min(mn,day);
+
+    }
+    cout << mn << endl;
 }
 
 //FuzzyCarnage
@@ -59,14 +105,13 @@ int main()
 {
     Boost;
     //Read;Write;
-    /* int t;
-    cin >> t;
-    while(t--)  */
-        solve();
+    // int t;
+    // cin >> t;
+    // while(t--) 
+         solve();
     
 
 }
-
 
 
 

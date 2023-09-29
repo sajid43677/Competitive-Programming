@@ -51,6 +51,16 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 
 
 void solve(){
+    ll n;
+    cin >> n;
+    set <ll> st;
+    ll cnt = 0;
+    for1(n){
+        ll tmp;
+        cin >> tmp;
+        if(tmp > 0) cnt++;
+    }
+    cout << cnt << endl;
     
 }
 
@@ -59,9 +69,9 @@ int main()
 {
     Boost;
     //Read;Write;
-    /* int t;
+    int t;
     cin >> t;
-    while(t--)  */
+    while(t--)  
         solve();
     
 

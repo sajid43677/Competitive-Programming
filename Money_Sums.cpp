@@ -48,10 +48,36 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 
 
 
-
-
 void solve(){
-    
+    ll n;
+    cin >> n;
+    ll arr[n];
+    ll sum = 0;
+    for1(n){
+        cin >> arr[i];
+        sum += arr[i];
+    }
+    ll dp[sum+1];
+    for1(sum+1) dp[i] = 0;
+    dp[0] = 1;
+    for1(n){
+        for(int j = sum; j >= arr[i];j--){
+            dp[j] = max(dp[j],dp[j-arr[i]]);
+        }
+    }
+    ll cnt = 0;
+    for2(sum){
+        if(dp[i] == 1){
+            cnt++;
+        }
+    }
+    cout << cnt << endl;
+    for2(sum){
+        if(dp[i] == 1){
+            cout << i << " ";
+        }
+    }
+    pendl;
 }
 
 //FuzzyCarnage
@@ -59,10 +85,10 @@ int main()
 {
     Boost;
     //Read;Write;
-    /* int t;
-    cin >> t;
-    while(t--)  */
-        solve();
+    // int t;
+    // cin >> t;
+    // while(t--) 
+         solve();
     
 
 }

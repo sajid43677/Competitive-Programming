@@ -48,10 +48,31 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 
 
 
-
-
 void solve(){
-    
+    ll n,m;
+    cin >> n >> m;
+    ll dp[n+1][m+1];
+    for1(n+1){
+        fori(j,0,m){
+            dp[i][j] = 1e9+7;
+        }
+    }
+
+    for2(n){
+        fori(j,1,m){
+            if(i == j){
+                dp[i][j] = 0;
+                continue;
+            }
+            fori(k,1,i-1){
+                dp[i][j] = min(dp[i][j],dp[i-k][j]+dp[k][j]+1);
+            }
+            fori(k,1,j-1){
+                dp[i][j] = min(dp[i][j],dp[i][j-k]+dp[i][k]+1);
+            }
+        }
+    }
+    cout << dp[n][m] << endl;
 }
 
 //FuzzyCarnage
@@ -59,10 +80,10 @@ int main()
 {
     Boost;
     //Read;Write;
-    /* int t;
-    cin >> t;
-    while(t--)  */
-        solve();
+    // int t;
+    // cin >> t;
+    // while(t--) 
+         solve();
     
 
 }

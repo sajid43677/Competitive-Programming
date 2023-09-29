@@ -51,7 +51,54 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 
 
 void solve(){
-    
+    ll n,q;
+    cin >> n >> q;
+    map <ll,ll> mp;
+    set <ll> st;
+    vi vc(n+1);
+    for2(n){
+        cin >> vc[i];
+        if(vc[i] == 0) continue;
+        if(mp.find(vc[i]) == mp.end()){
+            st.insert(vc[i]);
+            mp[vc[i]] = 1;
+        }
+        else{
+            mp[vc[i]]++;
+        }
+
+    }
+
+    for1(q){
+        ll a;
+        cin >> a;
+        if(a == 1){
+            ll b,c;
+            cin >> b >> c;
+            if(vc[b] != 0)mp[vc[b]]--;
+            if(vc[b] != 0 && mp[vc[b]] == 0){
+                st.erase(vc[b]);
+            }
+            if(c == 0){
+                vc[b] = c;
+                continue;
+            }
+             //__f("c,stz",c,st.size());
+            //__f("mp[c]",mp[c]);
+            if(mp.find(c) == mp.end() || mp[c] == 0){
+                mp[c] = 1;
+                st.insert(c);
+            }
+            else{
+                mp[c]++;
+            }
+            //__f("c,stz,mp[c]",c,st.size(),mp[c]);
+            vc[b] = c;
+        }
+        else{
+            cout << st.size() << endl;
+        }
+    }
 }
 
 //FuzzyCarnage
@@ -59,9 +106,9 @@ int main()
 {
     Boost;
     //Read;Write;
-    /* int t;
+    int t;
     cin >> t;
-    while(t--)  */
+    while(t--) 
         solve();
     
 

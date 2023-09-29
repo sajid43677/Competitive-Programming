@@ -51,6 +51,7 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 
 
 void solve(){
+    ll n,p,k;
     
 }
 
@@ -59,9 +60,9 @@ int main()
 {
     Boost;
     //Read;Write;
-    /* int t;
+    int t;
     cin >> t;
-    while(t--)  */
+    while(t--)  
         solve();
     
 

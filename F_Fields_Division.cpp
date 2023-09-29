@@ -22,7 +22,6 @@ typedef vector<ll> vi;
 #define pb push_back
 #define for1(n) for(int i = 0; i < n;i++)
 #define for2(n) for(int i = 1; i <= n;i++)
-#define fori(i,s,n) for(int i = s; i <= n;i++)
 #define lohi int, vector<int>, greater<int>>
 #define mkp make_pair
 #define pendl cout << '\n' 
@@ -46,12 +45,37 @@ vector<int> gx={1, -1, 0, 0, 1, 1, -1, -1},
 //          Code Starts Here          //
 //====================================//
 
+vector <ll> vc[300005];
+ll dis[300005];
 
-
-
+void fun(ll x){
+    dis[x] = 1;
+    for(auto a: vc[x]){
+        if(dis[a] == 1)continue;
+        fun(a);
+    }
+}
 
 void solve(){
-    
+    ll n,m,a,b;
+    cin >> n >> m;
+    for1(m){
+        cin >> a >> b;
+        if(a== 1 || b == 1) continue;
+        vc[a].pb(b);
+        vc[b].pb(a);
+    }
+    fun(n-1);
+    for2(n){
+        if(!dis[i]){
+            cout << "A" ;
+        }
+        else{
+            cout << "B";
+        }
+    }
+    pendl;
+
 }
 
 //FuzzyCarnage
@@ -66,14 +90,3 @@ int main()
     
 
 }
-
-
-
-
-
-
-
-
-
-
-

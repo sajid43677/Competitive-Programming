@@ -837,3 +837,68 @@ void update(ll node, ll b, ll e, ll i, ll newvalue)
     update(Right, mid + 1, e, i, newvalue);
     tree[node] = tree[Left] + tree[Right];
 }
+
+//double hashing
+=================
+const int MAXN=100006;
+namespace DoubleHash{
+    ll P[2][MAXN];
+    ll H[2][3][MAXN];
+    ll R[2][MAXN];
+    ll base[2];
+    ll mod[2];
+    void gen(){
+        base[0] = 29;
+        base[1] = 31;
+        mod[0]  = 1e9+7;
+        mod[1]  = 1e9+9;
+        for(int j=0;j<2;j++){
+            for(int i=0;i<MAXN;i++){
+                for(int k = 0; k < 3;k++)H[j][k][i]=0ll;
+                R[j][i] = 0ll;
+                P[j][i] = 1ll;
+            }
+        }
+        for(int j=0;j<2;j++){
+            for(int i=1;i<MAXN;i++){
+                P[j][i] = (P[j][i-1] * base[j])%mod[j];
+            }
+        }
+    }
+    void make_hash(char *arr,ll pos){
+        int len = strlen(arr);//arr.size();
+        for(int j=0;j<2;j++){
+            for (ll i = 1; i <= len; i++)H[j][pos][i] = (H[j][pos][i - 1] * base[j] + arr[i - 1] + 1007) % mod[j];
+            for (ll i = len; i >= 1; i--)R[j][i] = (R[j][i + 1] * base[j] + arr[i - 1] + 1007) % mod[j];
+        }
+    }
+    inline ll range_hash(int l,int r,int idx,ll pos){
+        ll hashval = H[idx][pos][r + 1] - ((long long)P[idx][r - l + 1] * H[idx][pos][l] % mod[idx]);
+        return (hashval < 0 ? hashval + mod[idx] : hashval);
+    }
+    inline ll reverse_hash(int l,int r,int idx){
+        ll hashval = R[idx][l + 1] - ((long long)P[idx][r - l + 1] * R[idx][r + 2] % mod[idx]);
+        return (hashval < 0 ? hashval + mod[idx] : hashval);
+    }
+    inline ll range_dhash(int l,int r,ll pos){
+        ll x = range_hash(l,r,0,pos);
+        return (x<<32)^range_hash(l,r,1,pos);
+    }
+    inline ll reverse_dhash(int l,int r){
+        ll x = reverse_hash(l,r,0);
+        return (x<<32)^reverse_hash(l,r,1);
+    }
+    //return total unique substring of the hashed string
+    /* inline ll total_unique_substring(ll n){
+        set <ll> st;
+        for(int i = 0; i < n;i++){
+            ll cnt = 0;
+            for(int j = i; j < n;j++){
+                st.insert(range_dhash(i,j));
+            }
+        }
+        return st.size();
+    } */
+}
+using namespace DoubleHash;
+char str1[MAXN];
