@@ -13,6 +13,19 @@
         "xutility": "cpp",
         "map": "cpp",
         "unordered_map": "cpp",
-        "xiosbase": "cpp"
+        "xiosbase": "cpp",
+        "array": "cpp",
+        "bitset": "cpp",
+        "initializer_list": "cpp",
+        "queue": "cpp",
+        "random": "cpp",
+        "regex": "cpp",
+        "stack": "cpp",
+        "type_traits": "cpp",
+        "chrono": "cpp",
+        "format": "cpp",
+        "algorithm": "cpp",
+        "set": "cpp",
+        "iostream": "cpp"
     }
 }

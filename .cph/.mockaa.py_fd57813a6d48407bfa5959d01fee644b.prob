@@ -1,0 +1,1 @@
+{"name":"Local: mockaa","url":"e:\\Competitive-Programming\\mockaa.py","tests":[{"id":1697033630177,"input":"2\n5\n3 6\n1 2 3 4 5\n11\n11 20\n16 11 4 14 7 6 16 9 17 16 8","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\Competitive-Programming\\mockaa.py","group":"local","local":true}
