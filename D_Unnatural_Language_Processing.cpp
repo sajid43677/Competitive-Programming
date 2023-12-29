@@ -1,10 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-
-typedef __gnu_pbds::tree<int, __gnu_pbds::null_type, less<int>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update> ordered_set;
 typedef long long ll;
 typedef pair<ll, ll> pll;
 typedef pair<int, int> pi;
@@ -54,6 +50,39 @@ vector<int> gx = {1, -1, 0, 0, 1, 1, -1, -1},
 
 void solve()
 {
+    ll n;
+    cin >> n;
+    string s;
+    cin >> s;
+    reverse(all(s));
+
+    map<char, char> mp;
+    mp['a'] = 'v';
+    mp['e'] = 'v';
+    mp['b'] = 'c';
+    mp['c'] = 'c';
+    mp['d'] = 'c';
+    string ans = "";
+    ll i = 0;
+    while (i < n)
+    {
+        if (mp[s[i]] == 'v')
+        {
+            ans.push_back(s[i++]);
+            ans.push_back(s[i++]);
+            ans.push_back('.');
+        }
+        else
+        {
+            ans.push_back(s[i++]);
+            ans.push_back(s[i++]);
+            ans.push_back(s[i++]);
+            ans.push_back('.');
+        }
+    }
+    ans.pop_back();
+    reverse(all(ans));
+    cout << ans << endl;
 }
 
 // FuzzyCarnage
@@ -61,8 +90,8 @@ int main()
 {
     Boost;
     // Read;Write;
-    //   int t;
-    //  cin >> t;
-    //  while(t--)
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 }

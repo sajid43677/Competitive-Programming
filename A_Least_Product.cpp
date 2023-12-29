@@ -1,10 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-
-typedef __gnu_pbds::tree<int, __gnu_pbds::null_type, less<int>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update> ordered_set;
 typedef long long ll;
 typedef pair<ll, ll> pll;
 typedef pair<int, int> pi;
@@ -54,6 +50,27 @@ vector<int> gx = {1, -1, 0, 0, 1, 1, -1, -1},
 
 void solve()
 {
+    ll n;
+    cin >> n;
+    ll arr[n];
+    ll pro = 1;
+    ll negs = 0;
+    for1(n)
+    {
+        cin >> arr[i];
+        if (arr[i] == 0)
+            pro = 2;
+        if (arr[i] < 0)
+            negs++;
+    }
+    if (pro == 2 || negs % 2 == 1)
+    {
+        cout << 0 << endl;
+        return;
+    }
+    cout << 1 << endl;
+    cout << "1 0" << endl;
+    return;
 }
 
 // FuzzyCarnage
@@ -61,8 +78,8 @@ int main()
 {
     Boost;
     // Read;Write;
-    //   int t;
-    //  cin >> t;
-    //  while(t--)
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 }

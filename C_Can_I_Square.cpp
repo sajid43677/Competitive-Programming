@@ -1,10 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-
-typedef __gnu_pbds::tree<int, __gnu_pbds::null_type, less<int>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update> ordered_set;
 typedef long long ll;
 typedef pair<ll, ll> pll;
 typedef pair<int, int> pi;
@@ -52,17 +48,58 @@ vector<int> gx = {1, -1, 0, 0, 1, 1, -1, -1},
 //          Code Starts Here          //
 //====================================//
 
+map<ll, bool> mp;
+void pre()
+{
+    for (ll i = 1; i * i <= 1e7 + 10; i++)
+    {
+        mp[i * i] = true;
+    }
+}
+
+bool isPerfectSquare(long double x)
+{
+
+    if (x >= 0)
+    {
+
+        long long sr = sqrt(x);
+
+        return (sr * sr == x);
+    }
+
+    return false;
+}
+
 void solve()
 {
+    ll n;
+    cin >> n;
+    ll a;
+    ll prd = 0;
+    for1(n)
+    {
+        cin >> a;
+        prd += a;
+    }
+    if (isPerfectSquare(prd) == true)
+    {
+        cout << "YES" << endl;
+    }
+    else
+    {
+        cout << "NO" << endl;
+    }
 }
 
 // FuzzyCarnage
 int main()
 {
+    // pre();
     Boost;
     // Read;Write;
-    //   int t;
-    //  cin >> t;
-    //  while(t--)
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 }

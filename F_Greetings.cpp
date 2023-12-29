@@ -51,18 +51,39 @@ vector<int> gx = {1, -1, 0, 0, 1, 1, -1, -1},
 
 //          Code Starts Here          //
 //====================================//
-
+bool cmp(pll p, pll q)
+{
+    return p.first > q.first;
+}
 void solve()
 {
+    ll n;
+    cin >> n;
+    vector<pll> vp;
+    ll a, b;
+    for1(n)
+    {
+        cin >> a >> b;
+        vp.pb({a, b});
+    }
+    sort(all(vp), cmp);
+    ordered_set os;
+    ll ans = 0;
+    for1(n)
+    {
+        ans += os.order_of_key(vp[i].yy);
+        os.insert(vp[i].yy);
+    }
+    cout << ans << endl;
 }
 
 // FuzzyCarnage
 int main()
 {
-    Boost;
-    // Read;Write;
-    //   int t;
-    //  cin >> t;
-    //  while(t--)
-    solve();
+    // Boost;
+    //  Read;Write;
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 }
