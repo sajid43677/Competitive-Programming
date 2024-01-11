@@ -45,16 +45,6 @@ void __f(const char *names, Arg1 &&arg1, Args &&...args)
     __f(comma + 1, args...);
 }
 
-// recursive lamda
-//  function<long long(long long)> factorial = [&](long long x){
-//  if(x == 0) return 1LL;
-//  else return x*factorial(x-1);
-//  };
-// lamda
-// auto will_change = [&](){
-// X++;
-// };
-
 //              D, U, R, L, DR, DL, UR, UL        D = Down, R = Right, L = Left, U = Up
 vector<int> gx = {1, -1, 0, 0, 1, 1, -1, -1},
             gy = {0, 0, 1, -1, 1, -1, 1, -1};
@@ -64,15 +54,92 @@ vector<int> gx = {1, -1, 0, 0, 1, 1, -1, -1},
 
 void solve()
 {
+    ll n;
+    cin >> n;
+    ll al[n];
+    ll bo[n];
+    vector<pll> alp;
+    vector<pll> bop;
+    for1(n)
+    {
+        cin >> al[i];
+        alp.pb({al[i], i});
+    }
+    for1(n)
+    {
+        cin >> bo[i];
+        bop.pb({bo[i], i});
+    }
+    auto cmp = [&](pll a, pll b)
+    {
+        return al[a.yy] + bo[a.yy] > al[b.yy] + bo[b.yy];
+    };
+
+    ll flg = 1;
+    ll curr = 0;
+    ll curra = 0;
+    ll currb = 0;
+    sort(all(alp), cmp);
+    sort(all(bop), cmp);
+
+    while (flg == 1)
+    {
+
+        while (curr % 2 == 1)
+        {
+            if (currb >= n)
+            {
+                flg = 0;
+                break;
+            }
+            if (al[bop[currb].yy] > 0 && bo[bop[currb].yy] > 0)
+            {
+
+                bo[bop[currb].yy]--;
+                al[bop[currb].yy] = 0;
+
+                break;
+            }
+            currb++;
+        }
+        while (curr % 2 == 0)
+        {
+            if (curra >= n)
+            {
+                flg = 0;
+                break;
+            }
+            if (bo[alp[curra].yy] > 0 && al[alp[curra].yy] > 0)
+            {
+
+                al[alp[curra].yy]--;
+                bo[alp[curra].yy] = 0;
+                break;
+            }
+            curra++;
+        }
+        curr++;
+    }
+    ll ans = 0;
+    for1(n)
+    {
+        ans += al[i];
+    }
+    for1(n)
+    {
+        ans -= bo[i];
+    }
+    cout << ans << endl;
 }
 
 // FuzzyCarnage
 int main()
 {
     Boost;
-    // Read;Write;
-    //   int t;
-    //  cin >> t;
-    //  while(t--)
-    solve();
+    //   Read;
+    // Write;
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 }

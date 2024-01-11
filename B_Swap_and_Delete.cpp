@@ -64,6 +64,36 @@ vector<int> gx = {1, -1, 0, 0, 1, 1, -1, -1},
 
 void solve()
 {
+    string s;
+    cin >> s;
+    ll zero = 0;
+    ll one = 0;
+    for (auto a : s)
+    {
+        if (a == '1')
+            one++;
+        else
+            zero++;
+    }
+    if (zero == one)
+    {
+        cout << 0 << endl;
+        return;
+    }
+    ll flg = -1;
+    for (int i = 0; i < s.size(); i++)
+    {
+        if ((s[i] == '1' && zero <= 0) || (one <= 0 && s[i] == '0'))
+        {
+            flg = i;
+            break;
+        }
+        if (s[i] == '1')
+            zero--;
+        else
+            one--;
+    }
+    cout << s.size() - flg << endl;
 }
 
 // FuzzyCarnage
@@ -71,8 +101,8 @@ int main()
 {
     Boost;
     // Read;Write;
-    //   int t;
-    //  cin >> t;
-    //  while(t--)
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 }

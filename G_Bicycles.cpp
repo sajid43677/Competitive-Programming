@@ -54,6 +54,54 @@ vector<int> gx = {1, -1, 0, 0, 1, 1, -1, -1},
 
 void solve()
 {
+    ll n, m;
+    cin >> n >> m;
+    ll a, b, w;
+    vector<pll> vc[1010];
+    ll slow[n + 1];
+    for1(m)
+    {
+        cin >> a >> b >> w;
+        if (a == b)
+            continue;
+        vc[a].pb({b, w});
+        vc[b].pb({a, w});
+    }
+    for2(n) cin >> slow[i];
+    ll dis[n + 1][1001];
+    for1(n + 1)
+    {
+        fori(j, 0, 1000) dis[i][j] = 1e18;
+    }
+    dis[1][1000] = 0;
+    multiset<pair<ll, pll>> mt;
+    mt.insert({0, {1000, 1}});
+    while (!mt.empty())
+    {
+        auto tmp = *mt.begin();
+        // __f("tmp.xx,tmp.yy.xx,tmp.yy.yy", tmp.xx, tmp.yy.xx, tmp.yy.yy);
+        mt.erase(mt.begin());
+        if (dis[tmp.yy.yy][tmp.yy.xx] < tmp.xx)
+            continue;
+        //__f("tmp.xx,tmp.yy.xx,tmp.yy.yy", tmp.xx, tmp.yy.xx, tmp.yy.yy);
+        ll currs = min(tmp.yy.xx, slow[tmp.yy.yy]);
+        for (auto x : vc[tmp.yy.yy])
+        {
+            //__f("dis[x.xx][currs],dis[tmp.yy.yy][tmp.yy.xx] + x.yy * currs", dis[x.xx][currs], dis[tmp.yy.yy][tmp.yy.xx] + x.yy * currs);
+            if (dis[x.xx][currs] > dis[tmp.yy.yy][tmp.yy.xx] + x.yy * currs)
+            {
+                dis[x.xx][currs] = dis[tmp.yy.yy][tmp.yy.xx] + x.yy * currs;
+                mt.insert({dis[x.xx][currs], {currs, x.xx}});
+            }
+        }
+    }
+    ll ans = 1e18;
+    for2(1000)
+    {
+        //__f("dis[n][i]", dis[n][i]);
+        ans = min(ans, dis[n][i]);
+    }
+    cout << ans << endl;
 }
 
 // FuzzyCarnage
@@ -61,8 +109,8 @@ int main()
 {
     Boost;
     // Read;Write;
-    //   int t;
-    //  cin >> t;
-    //  while(t--)
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 }

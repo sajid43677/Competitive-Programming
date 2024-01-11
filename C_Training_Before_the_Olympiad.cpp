@@ -64,6 +64,32 @@ vector<int> gx = {1, -1, 0, 0, 1, 1, -1, -1},
 
 void solve()
 {
+    ll n;
+    cin >> n;
+    ll arr[n];
+    ll od[n];
+    for1(n) { cin >> arr[i]; }
+    ll pre[n];
+    pre[0] = arr[0];
+    od[0] = 0;
+    if (arr[0] % 2 == 1)
+        od[0] = 1;
+    for2(n - 1)
+    {
+        pre[i] = pre[i - 1] + arr[i];
+        od[i] = od[i - 1];
+        if (arr[i] % 2 == 1)
+            od[i]++;
+    }
+    cout << arr[0] << " ";
+    for2(n - 1)
+    {
+        ll tmp = od[i] / 3;
+        if (od[i] % 3 == 1)
+            tmp++;
+        cout << pre[i] - tmp << " ";
+    }
+    pendl;
 }
 
 // FuzzyCarnage
@@ -71,8 +97,8 @@ int main()
 {
     Boost;
     // Read;Write;
-    //   int t;
-    //  cin >> t;
-    //  while(t--)
-    solve();
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
 }

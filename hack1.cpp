@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+typedef __gnu_pbds::tree<int, __gnu_pbds::null_type, less<int>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update> ordered_set;
 typedef long long ll;
 typedef pair<ll, ll> pll;
 typedef pair<int, int> pi;
@@ -48,126 +52,86 @@ vector<int> gx = {1, -1, 0, 0, 1, 1, -1, -1},
 //          Code Starts Here          //
 //====================================//
 
+bool cmp(pll a, pll b)
+{
+    return a.xx > b.xx;
+}
+
 void solve()
 {
-    ll n, a;
+    ll n;
     cin >> n;
-    ll arr[n + 1];
-    ll od = 0;
-    ll ev = 0;
-    for2(n)
+    ll al[n];
+    ll bo[n];
+    vector<pll> alp;
+    vector<pll> bop;
+    cout << n ;
+    for1(n)
     {
-
-        cin >> a;
-        arr[i] = a;
-        if (i % 2 == 0)
-            ev += a;
-        else
-            od += a;
+        cin >> al[i];
+        alp.pb({al[i], i});
     }
-    ll l = 1;
-    ll r = n;
-    while (l < r)
+    for1(n)
     {
-        __f("l,r,arr[l],arr[r],od,ev", l, r, arr[l], arr[r], od, ev);
-        if (od == ev)
+        cin >> bo[i];
+        bop.pb({bo[i], i});
+    }
+    ll flg = 1;
+    ll curr = 0;
+    ll curra = 0;
+    ll currb = 0;
+    sort(all(alp), cmp);
+    sort(all(bop), cmp);
+    for (auto a : alp)
+        __f("a.xx,a.xx", a.xx, a.xx);
+    for (auto a : bop)
+        __f("b.xx,b.xx", a.xx, a.xx);
+    while (flg == 1)
+    {
+        __f("curra,currb", curra, currb);
+        while (curr % 2 == 0)
         {
-            cout << "YES" << endl;
-            return;
+            if (currb >= n)
+            {
+                flg = 0;
+                break;
+            }
+            if (al[bop[currb].yy] > 0 && bo[bop[currb].yy] > 0)
+            {
+                al[bop[currb].yy]--;
+                bo[bop[currb].yy] = 0;
+                break;
+            }
+            currb++;
         }
-        if (l % 2 == 1 && r % 2 == 1 && od < ev)
+        while (curr % 2 == 1)
         {
-            cout << "NO" << endl;
-            return;
-        }
-        if (l % 2 == 0 && r % 2 == 0 && od > ev)
-        {
-            cout << "NO" << endl;
-            return;
-        }
-        if (od > ev)
-        {
-            if (l % 2 == 1 && r % 2 == 0)
+            if (curra >= n)
             {
-                od -= arr[l];
-                l++;
-                continue;
+                flg = 0;
+                break;
             }
-            if (l % 2 == 0 && r % 2 == 1)
+            if (bo[alp[curra].yy] > 0 && al[alp[curra].yy] > 0)
             {
-                od -= arr[r];
-                r--;
-                continue;
+                bo[bop[curra].yy]--;
+                al[bop[curra].yy] = 0;
+                break;
             }
-            if (l % 2 == 1 && r % 2 == 1)
-            {
-                if (od - arr[l] == ev)
-                {
-                    cout << "YES" << endl;
-                    return;
-                }
-                if (od - arr[r] == ev)
-                {
-                    cout << "YES" << endl;
-                    return;
-                }
-                if (od - arr[r] - arr[l] == ev)
-                {
-                    cout << "YES" << endl;
-                    return;
-                }
-                od -= arr[r] - arr[l];
-                r--;
-                l++;
-                continue;
-            }
-        }
-        if (od < ev)
-        {
-            if (l % 2 == 1 && r % 2 == 0)
-            {
-                ev -= arr[l];
-                l++;
-                continue;
-            }
-            if (l % 2 == 0 && r % 2 == 1)
-            {
-                ev -= arr[r];
-                r--;
-                continue;
-            }
-            if (l % 2 == 1 && r % 2 == 1)
-            {
-                if (ev - arr[l] == od)
-                {
-                    cout << "YES" << endl;
-                    return;
-                }
-                if (ev - arr[r] == od)
-                {
-                    cout << "YES" << endl;
-                    return;
-                }
-                if (ev - arr[r] - arr[l] == od)
-                {
-                    cout << "YES" << endl;
-                    return;
-                }
-                ev -= arr[r] - arr[l];
-                r--;
-                l++;
-                continue;
-            }
+            curra++;
         }
     }
-    cout << "NO" << endl;
+    ll ans = 0;
+    for1(n) ans += al[i];
+    for1(n) ans -= bo[i];
+    cout << ans << endl;
 }
 
 // FuzzyCarnage
 int main()
 {
     // Boost;
-    //  Read;Write;
+    //   Read;
+    Write;
     int t;
     cin >> t;
     while (t--)

@@ -1,12 +1,11 @@
-Case #1: 18
-Case #2: 2.5
-Case #3: 5445
-Case #4: 3.5
-Case #5: 6.5
-Case #6: 58.5
-Case #7: 483.5
-Case #8: 5.1207e+008
-Case #9: 5.9188e+008
-Case #10: 7.85335e+008
-Case #11: 9.97863e+008
-Case #12: 9.99983e+008
+3a.xx: 4 |a.xx: 4
+a.xx: 2 |a.xx: 2
+a.xx: 1 |a.xx: 1
+b.xx: 4 |b.xx: 4
+b.xx: 2 |b.xx: 2
+b.xx: 1 |b.xx: 1
+curra: 0 |currb: 0
+curra: 0 |currb: 0
+curra: 0 |currb: 1
+curra: 0 |currb: 2
+4
